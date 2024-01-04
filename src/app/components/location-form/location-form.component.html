@@ -1,0 +1,22 @@
+<div id="overlay">
+    <div id="createLocation">
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <h2 style="margin-top: 0;">Create Location</h2>
+        <!-- <button id="closeButton" type="button" class="btn-close" aria-label="Close" (click)="closeOverlay()">x</button> -->
+        <input type="text" name="name" placeholder="Location Name" formControlName="name" style="margin-bottom: 8px;">
+        <p class="requiredText">*Required</p>
+        <p style="margin-bottom: 2px;">Select location on map:</p>
+        <div id='mapContainer'></div>
+        <div id="longlat" style="margin-bottom: 8px;">
+            <input style="width: 100%; margin-bottom: 4px;" type="number" name="longitude" placeholder="Longitude" formControlName="longitude" min="-180" max="180" step="0.001">
+            <input style="width: 100%" type="number" name="latitude" placeholder="Latitude" formControlName="latitude" min="-90" max="90" step="0.001">
+        </div>
+        <p class="requiredText" style="margin-bottom: 2px;">*Longitude must be within [-180, 180]</p>
+        <p class="requiredText">*Latitude must be within [-90, 90]</p>
+        <button type="submit" [disabled]="!form.valid">Create</button>
+        
+        <!-- <button [routerLink]="['']">Close</button> -->
+        <button (click)="closePopup()">Close</button>
+      </form>
+    </div>
+  </div>

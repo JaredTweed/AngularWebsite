@@ -1,0 +1,73 @@
+.report-form-container {
+  background-color: #fff;
+  border: 1px solid #3b3b3b;
+  
+  /* Same as report-form */
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  right: 0;
+  height: 575px;
+  padding: 10px;
+  padding-bottom: 30px;
+  margin: 30px;
+  border-radius: 8px;
+}
+
+input, select, textarea, button, .requiredText, .text {
+  border-radius: 4px;
+  margin: 5px;
+}
+
+form {
+  width: calc(100% - 20px);
+}
+
+input, select, textarea, .otherButton {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+}
+
+select, .otherButton {
+  width: calc(100% + 12px);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 50px;
+  max-height: 160px;
+}
+
+
+.requiredText {
+  font-size: .9rem;
+  color: rgb(143, 0, 0);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.otherButton {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.otherButton:hover {
+  background-color: #5a6268;
+}
+
+#submitButton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+#submitButton:hover {
+  background-color: #45a049;
+}
+

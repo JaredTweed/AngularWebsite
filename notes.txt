@@ -1,0 +1,30 @@
+npm i -g '@angular/cli'
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+ng new --no-standalone appName
+
+Say yes to all the options, except choose SSG instead of SSR.
+SSR causes a "window not defined" error for leaflet that I don't know how to fix.
+
+cd appName
+ng serve -o
+
+Create your app by modifying src/app/app.component.html and src/app/app.component.spec.ts
+
+cd appName
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+ng g component componentName
+
+Run componentName in src/app/app.component.html with <app-componentName></app-componentName>
+Modify componentName by modifying src/app/componentName.component.html
+
+
+
+ng g service --skip-tests=true serviceName
+
+npm install leaflet @types/leaflet
+Remember to include the leaflet style sheet in the index.html header
+
+Remember to include HttpClientModule in app.module.ts
+
+npm install --save-dev @types/uuid
+

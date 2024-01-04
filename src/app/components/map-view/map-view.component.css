@@ -1,0 +1,44 @@
+/* .map-container {
+  position: absolute;
+  top: 63%;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  margin: 30px;
+} */
+ 
+.map-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 50%;
+  height: 613px;
+  margin: 30px;
+  margin-right: 0;
+  z-index: -1;
+}
+
+#details-container {
+  background-color: #ffffff;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  right: 50%;
+  bottom: 35%;
+  margin: 30px;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #000000; 
+}
+
+.map-frame {
+  border: 2px solid black;
+  height: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    
+}
+  

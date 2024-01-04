@@ -1,0 +1,22 @@
+<div id="overlay">
+    <div *ngIf="report" id="details-container">
+        <h2>Report Details</h2>
+        <div><strong>Report ID:</strong> {{ report.id }}</div>
+        <div><strong>Reporter:</strong> {{ report.reporterInfo.name }}</div>
+        <div><strong>Phone Number:</strong> {{ report.reporterInfo.phoneNumber }}</div>
+        <div><strong>Troublemaker:</strong> {{ report.troublemakerName }}</div>
+        <div><strong>Location:</strong> {{ report.location.name }}</div>
+        <div><strong>Longitude:</strong> {{ report.location.longitude }}</div>
+        <div><strong>Latitude:</strong> {{ report.location.latitude }}</div>
+        <div><strong>Time Reported:</strong> {{ report.timeDate | date:' h:mm a, MMM d, y' }}</div>
+        <div><strong>Status:</strong> {{ report.status }}</div>
+        <div *ngIf="report.extraInfo"><strong>Extra Info:</strong> {{ report.extraInfo }}</div>
+        <div *ngIf="report.pictureUrl"><strong>Picture:</strong><br> <img src="{{ report.pictureUrl }}" alt="Report Picture" style="max-width: 280px;"></div>
+    </div>
+</div>
+  
+  <!-- 
+      Call with the following command:
+      <app-report-details [report]="selectedReport"></app-report-details> 
+  -->
+  
