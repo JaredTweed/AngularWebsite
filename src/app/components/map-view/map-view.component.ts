@@ -41,6 +41,10 @@ export class MapViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reportService.reportFormSubmitted.subscribe(() => {
+      this.updateMarkers();
+    });
+    
     this.updateMarkers();
     this.initMap();
   }

@@ -110,7 +110,8 @@ export class ReportFormComponent implements AfterViewInit{
                       // Handle the response by resetting the form
                       this.reportForm.reset();
                       console.log('Report submitted successfully.');
-                      this.reportSubmitted.emit();
+                      this.reportSubmitted.emit(); // Signal to the parent component that a report has been submitted
+                      this.reportService.reportFormSubmitted.next(); // Signal to the map component that a report has been submitted
                     },
                     (error: any) => {
                       // Handle the error

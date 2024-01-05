@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, Subject, firstValueFrom } from 'rxjs';
 import { Report } from '../models/report.model';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class ReportService {
   private appKey = 'xIfQhdOq6Z';
   private apiUrl = `https://272.selfip.net/apps/${this.appKey}/collections/`;
+  reportFormSubmitted = new Subject<void>();
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

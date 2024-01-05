@@ -9,9 +9,9 @@
         <div><strong>Longitude:</strong> {{ report.location.longitude }}</div>
         <div><strong>Latitude:</strong> {{ report.location.latitude }}</div>
         <div><strong>Time Reported:</strong> {{ report.timeDate | date:' h:mm a, MMM d, y' }}</div>
-        <div><strong>Status:</strong> {{ report.status }}</div>
+        <div *ngIf="report.status"><strong>Status:</strong> {{ report.status }}</div>
         <div *ngIf="report.extraInfo"><strong>Extra Info:</strong> {{ report.extraInfo }}</div>
-        <div *ngIf="report.pictureUrl"><strong>Picture:</strong><br> <img src="{{ report.pictureUrl }}" alt="Report Picture" style="max-width: 280px;"></div>
+        <div *ngIf="report.pictureUrl"><strong>Picture:</strong><br> <img src="{{ report.pictureUrl }}" alt="Report Picture" style="max-width: 300px;"></div>
     </div>
 </div>
   
