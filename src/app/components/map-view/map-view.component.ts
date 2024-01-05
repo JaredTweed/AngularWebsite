@@ -10,6 +10,13 @@
 // }
 
 
+interface TroublemakersAtLocation {
+  troublemakerNames: string[];
+  locationName: string;
+  longitude: number;
+  latitude: number;
+}
+
 import { Component, OnInit } from '@angular/core';
 import * as L from 'leaflet';
 import { Report } from '../../models/report.model';
@@ -50,18 +57,35 @@ export class MapViewComponent implements OnInit {
   updateMarkers(): void {
     this.markersLayer.clearLayers(); // Clear existing layers
     this.reportService.getAllReports().subscribe((reports: Report[]) => {
-      reports.forEach(report => this.addMarker(report));
+
+      const groupedReports: TroublemakersAtLocation[] = reports.reduce((result: TroublemakersAtLocation[], report: Report) => {
+        const existingGroup = result.find(group => group.latitude === report.location.latitude && group.longitude === report.location.longitude);
+        if (existingGroup) {
+          existingGroup.troublemakerNames.push(report.troublemakerName);
+          existingGroup.troublemakerNames.sort(); // Sort the troublemakerNames alphabetically
+        } else {
+          result.push({
+            troublemakerNames: [report.troublemakerName],
+            locationName: report.location.name,
+            longitude: report.location.longitude,
+            latitude: report.location.latitude
+          });
+        }
+        return result;
+      }, []);
+
+      groupedReports.forEach(report => this.addMarker(report));
       console.log(this.markersLayer);
       this.markersLayer.addTo(this.map); // Add the layer to the map once all the markers have been added
     });
   }
 
-  addMarker(report: Report) {
+  addMarker(info: TroublemakersAtLocation) {
     if (this.map) {
-      let currentMarker = L.marker([report.location.latitude, report.location.longitude], { riseOnHover: true })
-        .bindPopup(`<b>${report.location.name}</b><br>${report.troublemakerName}`)
+      let currentMarker = L.marker([info.latitude, info.longitude], { riseOnHover: true })
+        .bindPopup(`<b>Location:</b> ${info.locationName}<br><b>Troublemaker${info.troublemakerNames.length === 1 ? '' : 's'}: </b>${info.troublemakerNames.join(', ')}`)
         .on('click', async () => {
-          this.map!.flyTo([report.location.latitude, report.location.longitude], 12);
+          this.map!.flyTo([info.latitude, info.longitude], 12);
           currentMarker.openPopup();
         })
         .addTo(this.markersLayer);

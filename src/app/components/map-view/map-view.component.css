@@ -18,6 +18,14 @@
   z-index: -1;
 }
 
+@media (max-width: 602px) {
+  .map-container {
+    right: 0;
+    margin-right: 30px;
+    /* top: 0px; */
+  }
+}
+
 #details-container {
   background-color: #ffffff;
   position: absolute;

@@ -24,10 +24,10 @@
         <td>{{ report.troublemakerName }}</td>
         <td>{{ report.location.name }}</td>
         <td>{{ report.timeDate | date:'MMM d, h:mm a' }}</td>
-        <td id="details">Hover to view</td>
-        <!-- <a [routerLink]="['details']">View Details</a> -->
+        <!-- <td id="details">Hover to view</td> -->
+        <td><button [routerLink]="['details', report.id]">View Details</button></td>
         <td><button class="btn btn-danger" (click)="deleteReport(report)">Delete</button></td>
-        <app-report-details id="report-details" [report]="report"></app-report-details>
+        <!-- <app-report-details id="report-details" [report]="report"></app-report-details> -->
     </tr>
 
     <!-- Image testing: "https://i.pinimg.com/originals/ca/f8/5d/caf85d12606cf1d9e9990aa750ef3103.jpg" -->

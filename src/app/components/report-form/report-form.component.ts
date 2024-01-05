@@ -65,62 +65,126 @@ export class ReportFormComponent implements AfterViewInit{
     // Set the reportForm's location to the corresponding location of the selected id
     const selectElement = document.getElementById('locationName') as HTMLSelectElement;
     const selectedOption: string = selectElement.options[selectElement.selectedIndex].value;
-    const selectedLocation: LocationWithId | undefined = this.locationList.find(location => location.id === selectedOption);
-    if (selectedLocation) {
-      const { id, ...locationWithoutId } = selectedLocation;
-      this.reportForm.patchValue({ location: locationWithoutId });
+    if(selectedOption != '0') {
+      const selectedLocation: LocationWithId | undefined = this.locationList.find(location => location.id === selectedOption);
+      if (selectedLocation) {
+        const { id, ...locationWithoutId } = selectedLocation;
+        this.reportForm.patchValue({ location: locationWithoutId });
+      }
     }
 
     // Format the phone number
     const phoneNumber = this.formatPhoneNumber(this.reportForm.get('reporterInfo.phoneNumber')?.value);
     this.reportForm.patchValue({ reporterInfo: { phoneNumber: phoneNumber } });
 
+    // Set timeDate to current time
+    this.reportForm.patchValue({ timeDate: new Date() }); 
+
     console.log('Report form:', this.reportForm.value);
 
-    if (this.reportForm.valid) {
-      const password = prompt('Please enter the password:');
-      if (password) {
-        // this.locationsList.push({name: this.reportForm.value.location, longitude: this.reportForm.value.longitude, latitude: this.reportForm.value.latitude});
+    
+    // Check if the same troublemakerName already exists at the exact coordinates
+    const troublemakerName = this.reportForm.get('troublemakerName')?.value;
+    const longitude = this.reportForm.get('location.longitude')?.value;
+    const latitude = this.reportForm.get('location.latitude')?.value;
+    this.reportService.pull().then(
+      (reports: Report[]) => {
+        const existingReport = reports.find(report => report.troublemakerName === troublemakerName && Math.abs(report.location.longitude - longitude) < 0.01 && Math.abs(report.location.latitude - latitude) < 0.01);
+        if (existingReport) {
+          alert(`The same troublemaker '${troublemakerName}' has already been reported near that location.`);
+        } else{
 
-        this.hashService.hashPassword(password).subscribe((hashedPassword: string) => {
-          if (hashedPassword === 'c9fc20c27a5e29813e54ada78dce6c8f') {
-            this.reportForm.patchValue({ timeDate: new Date() }); // Set timeDate to current time
-            
-            console.log('Submitting report:', this.reportForm.value);
-            
-            this.reportService.createReport(this.reportForm.value).subscribe(
-              (response: any) => {
-                // Handle the response by resetting the form
-                this.reportForm.reset();
-                console.log('Report submitted successfully.');
-                this.reportSubmitted.emit();
-              },
-              (error: any) => {
-                // Handle the error
-                console.error('There was an error submitting the report:', error);
-              }
-            );
+          if (this.reportForm.valid) {
+            const password = prompt('Please enter the password:');
+            if (password) {
+              // this.locationsList.push({name: this.reportForm.value.location, longitude: this.reportForm.value.longitude, latitude: this.reportForm.value.latitude});
+      
+              this.hashService.hashPassword(password).subscribe((hashedPassword: string) => {
+                if (hashedPassword === 'c9fc20c27a5e29813e54ada78dce6c8f') {
+                  
+                  
+                  console.log('Submitting report:', this.reportForm.value);
+                  
+                  this.reportService.createReport(this.reportForm.value).subscribe(
+                    (response: any) => {
+                      // Handle the response by resetting the form
+                      this.reportForm.reset();
+                      console.log('Report submitted successfully.');
+                      this.reportSubmitted.emit();
+                    },
+                    (error: any) => {
+                      // Handle the error
+                      console.error('There was an error submitting the report:', error);
+                    }
+                  );
+                } else {
+                  alert('Incorrect password. Report submission cancelled. ');// + hashedPassword + ' \'' + password + '\'');
+                }
+              });
+            }
           } else {
-            alert('Incorrect password. Report submission canceled. ');// + hashedPassword + ' \'' + password + '\'');
+      
+            // Get the names of invalid controls in the reportForm
+            const invalidControls = Object.keys(this.reportForm.controls).filter(controlName => this.reportForm.controls[controlName].invalid);
+      
+            // Map the invalid control names to their corresponding error messages
+            const invalidControlNames = invalidControls.map(controlName => {
+              const control = this.reportForm.get(controlName);
+              if (controlName === 'reporterInfo') {
+                // If the invalid control is reporterInfo, get the names of invalid children controls
+                const reporterInfoControl = this.reportForm.get('reporterInfo') as FormGroup; // Cast to FormGroup
+                const reporterInfoChildren = reporterInfoControl ? Object.keys(reporterInfoControl.controls).filter(childControlName => reporterInfoControl.controls[childControlName].invalid) : [];
+                
+                // Format the error messages for each invalid child control
+                const formattedChildren = reporterInfoChildren.map(childControlName => {
+                  if (childControlName === 'phoneNumber') {
+                    return 'Phone number must be 10 digits';
+                  } else if (childControlName === 'name') {
+                    return 'Name is required';
+                  } else {
+                    return childControlName;
+                  }
+                });
+                
+                return formattedChildren.join('\n'); // Join the error messages for invalid children controls
+              } else if (controlName === 'location') {
+                return 'Location is required';
+              } else if (controlName === 'troublemakerName') {
+                return 'Troublemaker\'s name is required';
+              } else {
+                return controlName;
+              }
+            });
+      
+            // Display an alert with the invalid control names and error messages
+            alert(`Your submission is invalid:\n${invalidControlNames.join('\n')}`);
           }
-        });
       }
-    } else {
-      alert('The report is not valid. Please fill in all required fields.');
-    }
+  }); 
+    
+    // const existingReport = this.createdLocations.find(report => report.troublemakerName === troublemakerName && report.longitude === longitude && report.latitude === latitude);
+    // if (existingReport) {
+    //   console.log(`The same troublemaker '${troublemakerName}' has already been reported near that location.`);
+    //   return;
+    // }
+    // const troublemakerLocation = reports.map(report => {report.troublemakerName, report.location.longitude, report.location.latitude});
+        
+
+
+
   }
 
   onLocationCreated(newLocation: ReportLocation) {
     this.reportForm.patchValue({ location: newLocation });
     this.createdLocations.push(newLocation);
-    this.loadReports(true);
+    this.loadLocationList(true);
   }
 
   ngAfterViewInit(): void {
-    this.loadReports();
+    this.loadLocationList();
   }
 
-  loadReports(addRecentToStart: Boolean = false): void {
+  loadLocationList(addRecentToStart: Boolean = false): void {
     this.reportService.pull().then(
       (reports: Report[]) => {
         const reportLocations = reports.map(report => report.location);
@@ -139,6 +203,9 @@ export class ReportFormComponent implements AfterViewInit{
             const lastCreatedLocation = this.locationList.splice(lastCreatedLocationIndex, 1)[0];
             this.locationList.unshift(lastCreatedLocation);
           }
+        } else {
+          // Prepend the list with a null location
+          this.locationList.unshift({ name: 'Select Location', longitude: 0, latitude: 0, id: '0' });
         }
       }
         
@@ -180,5 +247,13 @@ export class ReportFormComponent implements AfterViewInit{
       element.value = element.value.replace(/(\d{3})(\d{3})(\d{4})/, '($1) - $2 - $3'); // Format to (xxx) - xxx - xxxx
       return undefined;
     }
+  }
+
+  getControlClass(controlName: string): string {
+    const control = this.reportForm.get(controlName);
+    if (control && control.invalid && (control.dirty || control.touched)) {
+      return 'invalid';
+    }
+    return '';
   }
 }

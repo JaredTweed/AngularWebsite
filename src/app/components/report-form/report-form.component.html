@@ -6,7 +6,7 @@
         <div formGroupName="reporterInfo">
             <input formControlName="name" type="text" placeholder="Your Name" />
             <input (input)="formatPhoneNumber()" id="phone-number" formControlName="phoneNumber" type="tel" placeholder="Phone Number"/>
-            <div class="requiredText">*Must be exactly 10 numbers long</div>
+            <div class="requiredText">*Must be exactly 10 numbers</div>
         </div>
         <input formControlName="troublemakerName" type="text" placeholder="Troublemaker's Name" />
         <!-- <div formGroupName="location">
@@ -23,8 +23,9 @@
         
         <input formControlName="pictureUrl" type="text" placeholder="Picture Link (optional)" />
         <textarea formControlName="extraInfo" placeholder="Extra Information (optional)"></textarea>
-        <button id='submitButton' type="submit">Submit</button>
+        <button id='submitButton' type="submit">Submit Report</button>
     </form>
     
-    <app-location-form *ngIf="showPopup" (locationCreated)="onLocationCreated($event)" (close)="showPopup = false"></app-location-form>
+    
 </div>
+<app-location-form *ngIf="showPopup" (locationCreated)="onLocationCreated($event)" (close)="showPopup = false"></app-location-form>

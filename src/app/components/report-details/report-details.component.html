@@ -1,4 +1,4 @@
-<div id="overlay">
+<div id="overlay" (click)="close()">
     <div *ngIf="report" id="details-container">
         <h2>Report Details</h2>
         <div><strong>Report ID:</strong> {{ report.id }}</div>

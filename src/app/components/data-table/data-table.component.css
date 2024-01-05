@@ -13,6 +13,15 @@
     
 }
 
+@media (max-width: 602px) {
+    .table {
+        top: 1290px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
 th, td {
     text-align: center;
     vertical-align: middle;
