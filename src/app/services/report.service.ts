@@ -55,9 +55,9 @@ export class ReportService {
   //   return this.http.get<Report>(`${this.apiUrl+'data1/documents/'}${id}/`, this.httpOptions);
   // }
 
-  updateReport(report: Report): Observable<any> {
-    return this.http.put(`${this.apiUrl+'data1/documents/jaredt/'}${report.id}/`, { key: report.id, data: report }, this.httpOptions);
-  }
+  // updateReport(report: Report): Observable<any> {
+  //   return this.http.put(`${this.apiUrl+'data1/documents/jaredt/'}${report.id}/`, { key: report.id, data: report }, this.httpOptions);
+  // }
 
   deleteReport(report: Report): Observable<any> {
     // Works
@@ -85,16 +85,6 @@ export class ReportService {
           return response.map((item: any) => item.data);
         }),
         catchError(this.handleError) // Add this line for error handling
-      );
-  }
-
-  sortReports(column: string, direction: string): Observable<Report[]> {
-    return this.http.get<Report[]>(`${this.apiUrl+'data1/documents/'}?sort=${column}&direction=${direction}`, this.httpOptions)
-      .pipe(
-        map((response: any) => {
-          // Extracts the report data from the response
-          return response.map((item: any) => item.data);
-        })
       );
   }
 

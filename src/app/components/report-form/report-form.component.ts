@@ -250,11 +250,11 @@ export class ReportFormComponent implements AfterViewInit{
     }
   }
 
-  getControlClass(controlName: string): string {
-    const control = this.reportForm.get(controlName);
-    if (control && control.invalid && (control.dirty || control.touched)) {
-      return 'invalid';
-    }
-    return '';
-  }
+  // getControlClass(controlName: string): string {
+  //   const control = this.reportForm.get(controlName);
+  //   if (control && control.invalid && (control.dirty || control.touched)) {
+  //     return 'invalid';
+  //   }
+  //   return '';
+  // }
 }
