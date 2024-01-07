@@ -1,14 +1,18 @@
-# NCT Project
+# Project Description
 
-This project is a web application that uses Angular for the frontend and Leaflet for map visualization.
+This project is a web application that uses [Angular](https://github.com/angular/angular-cli) version 17.0.5 for the frontend and [Leaflet](https://leafletjs.com/) for map visualization.
+
+## Project Setup
+
+To see the app, go to https://jaredtweed.github.io/AngularProject-webpage/.
 
 ## Skills Highlighted
 
 1. **Angular**: This project uses Angular for building the frontend. Components were created for different parts of the application, such as the report form and the map view. Services were used to share data between these components.
 
-2. **Angular Routing**: The application uses Angular's routing module to navigate between different components. This was used to create a single-page application experience, with seamless navigation between the report form and the map view.
+2. **Angular Routing**: The application uses Angular's routing module to navigate between different components. This was used to create a single-page application experience, with seamless navigation to the data details.
 
-3. **HttpClient**: Angular's HttpClient is used for making HTTP requests to a backend service. This was used to store reports submitted through the report form, and to access the Hashify API for shortening URLs.
+3. **HttpClient**: Angular's HttpClient is used for making HTTP requests to a backend service. This was used to store reports submitted through the report form, and to access the Hashify API which maintains a secure password.
 
 4. **Event Emitters**: Angular's EventEmitter class is used for emitting custom events in components. This was used to signal the map view to update its markers whenever a new report was submitted.
 
@@ -19,21 +23,3 @@ This project is a web application that uses Angular for the frontend and Leaflet
 7. **HTML/CSS**: The layout and styling of the application are done using HTML and CSS. This includes creating responsive layouts and custom styles. CSS was used to style the report form and the map view, and to create a consistent look and feel across the application.
 
 8. **RxJS**: This project uses RxJS for handling asynchronous operations and event-based programs by using observables. Observables were used to handle HTTP requests and to manage event emissions between components.
-
-## Project Setup
-
-To see the app, go to https://jaredtweed.github.io/AngularProject-webpage/.
-
-## Contributing
-
-Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
-# Nct
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
-
