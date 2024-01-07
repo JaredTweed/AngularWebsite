@@ -1,27 +1,39 @@
+# NCT Project
+
+This project is a web application that uses Angular for the frontend and Leaflet for map visualization.
+
+## Skills Highlighted
+
+1. **Angular**: This project uses Angular for building the frontend. Components were created for different parts of the application, such as the report form and the map view. Services were used to share data between these components.
+
+2. **Angular Routing**: The application uses Angular's routing module to navigate between different components. This was used to create a single-page application experience, with seamless navigation between the report form and the map view.
+
+3. **HttpClient**: Angular's HttpClient is used for making HTTP requests to a backend service. This was used to store reports submitted through the report form, and to access the Hashify API for shortening URLs.
+
+4. **Event Emitters**: Angular's EventEmitter class is used for emitting custom events in components. This was used to signal the map view to update its markers whenever a new report was submitted.
+
+5. **Leaflet API**: Leaflet is used for map visualization. This includes creating and customizing maps, adding markers to the map, and handling map events. The Leaflet API was used to interact with the map and perform operations such as zooming to a specific location when a marker is clicked.
+
+6. **TypeScript**: The application is written in TypeScript, which adds static types to JavaScript, improving the development experience and making the code more robust. TypeScript features such as interfaces and type annotations were used to ensure type safety throughout the application.
+
+7. **HTML/CSS**: The layout and styling of the application are done using HTML and CSS. This includes creating responsive layouts and custom styles. CSS was used to style the report form and the map view, and to create a consistent look and feel across the application.
+
+8. **RxJS**: This project uses RxJS for handling asynchronous operations and event-based programs by using observables. Observables were used to handle HTTP requests and to manage event emissions between components.
+
+## Project Setup
+
+To see the app, go to https://jaredtweed.github.io/AngularProject-webpage/.
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
 # Nct
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.5.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
