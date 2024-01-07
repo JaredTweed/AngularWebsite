@@ -1,12 +1,12 @@
-# Project Description
+# Project Overview
 
 This project is a web application that uses [Angular](https://github.com/angular/angular-cli) version 17.0.5 for the frontend and [Leaflet](https://leafletjs.com/) for map visualization.
 
-## Project Setup
+## Accessing the Application
 
 To see the app, go to https://jaredtweed.github.io/AngularProject-webpage/.
 
-## Skills Highlighted
+## Technical Highlights
 
 1. **Angular**: This project uses Angular for building the frontend. Components were created for different parts of the application, such as the report form and the map view. Services were used to share data between these components.
 
