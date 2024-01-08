@@ -19,8 +19,8 @@
 
   position: fixed;
   top: 40%;
-  left: 50%;
-  min-width: 200px;
+  left: calc(50% - 30px);
+  min-width: 270px;
   transform: translate(-50%, -50%);
   padding: 20px;
   margin: 30px;
