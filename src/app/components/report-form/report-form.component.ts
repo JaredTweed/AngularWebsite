@@ -20,7 +20,7 @@ interface LocationWithId {
   templateUrl: './report-form.component.html',
   styleUrls: ['./report-form.component.css']
 })
-export class ReportFormComponent implements AfterViewInit{
+export class ReportFormComponent implements AfterViewInit {
   reportForm: FormGroup;
   showPopup: boolean = false;
   locationList: LocationWithId[];
@@ -65,7 +65,7 @@ export class ReportFormComponent implements AfterViewInit{
     // Set the reportForm's location to the corresponding location of the selected id
     const selectElement = document.getElementById('locationName') as HTMLSelectElement;
     const selectedOption: string = selectElement.options[selectElement.selectedIndex].value;
-    if(selectedOption != '0') {
+    if (selectedOption != '0') {
       const selectedLocation: LocationWithId | undefined = this.locationList.find(location => location.id === selectedOption);
       if (selectedLocation) {
         const { id, ...locationWithoutId } = selectedLocation;
@@ -78,33 +78,33 @@ export class ReportFormComponent implements AfterViewInit{
     this.reportForm.patchValue({ reporterInfo: { phoneNumber: phoneNumber } });
 
     // Set timeDate to current time
-    this.reportForm.patchValue({ timeDate: new Date() }); 
+    this.reportForm.patchValue({ timeDate: new Date() });
 
     console.log('Report form:', this.reportForm.value);
 
-    
+
     // Check if the same troublemakerName already exists at the exact coordinates
     const troublemakerName = this.reportForm.get('troublemakerName')?.value;
     const longitude = this.reportForm.get('location.longitude')?.value;
     const latitude = this.reportForm.get('location.latitude')?.value;
-    this.reportService.pull().then(
+    this.reportService.getAllReports().subscribe(
       (reports: Report[]) => {
         const existingReport = reports.find(report => report.troublemakerName === troublemakerName && Math.abs(report.location.longitude - longitude) < 0.01 && Math.abs(report.location.latitude - latitude) < 0.01);
         if (existingReport) {
           alert(`The same troublemaker '${troublemakerName}' has already been reported near that location.`);
-        } else{
+        } else {
 
           if (this.reportForm.valid) {
             const password = prompt('Please enter the password:');
             if (password) {
               // this.locationsList.push({name: this.reportForm.value.location, longitude: this.reportForm.value.longitude, latitude: this.reportForm.value.latitude});
-      
+
               this.hashService.hashPassword(password).subscribe((hashedPassword: string) => {
                 if (hashedPassword === 'c9fc20c27a5e29813e54ada78dce6c8f') {
-                  
-                  
+
+
                   console.log('Submitting report:', this.reportForm.value);
-                  
+
                   this.reportService.createReport(this.reportForm.value).subscribe(
                     (response: any) => {
                       // Handle the response by resetting the form
@@ -124,10 +124,10 @@ export class ReportFormComponent implements AfterViewInit{
               });
             }
           } else {
-      
+
             // Get the names of invalid controls in the reportForm
             const invalidControls = Object.keys(this.reportForm.controls).filter(controlName => this.reportForm.controls[controlName].invalid);
-      
+
             // Map the invalid control names to their corresponding error messages
             const invalidControlNames = invalidControls.map(controlName => {
               const control = this.reportForm.get(controlName);
@@ -135,7 +135,7 @@ export class ReportFormComponent implements AfterViewInit{
                 // If the invalid control is reporterInfo, get the names of invalid children controls
                 const reporterInfoControl = this.reportForm.get('reporterInfo') as FormGroup; // Cast to FormGroup
                 const reporterInfoChildren = reporterInfoControl ? Object.keys(reporterInfoControl.controls).filter(childControlName => reporterInfoControl.controls[childControlName].invalid) : [];
-                
+
                 // Format the error messages for each invalid child control
                 const formattedChildren = reporterInfoChildren.map(childControlName => {
                   if (childControlName === 'phoneNumber') {
@@ -146,7 +146,7 @@ export class ReportFormComponent implements AfterViewInit{
                     return childControlName;
                   }
                 });
-                
+
                 return formattedChildren.join('\n'); // Join the error messages for invalid children controls
               } else if (controlName === 'location') {
                 return 'Location is required';
@@ -156,20 +156,20 @@ export class ReportFormComponent implements AfterViewInit{
                 return controlName;
               }
             });
-      
+
             // Display an alert with the invalid control names and error messages
             alert(`Your submission is invalid:\n${invalidControlNames.join('\n')}`);
           }
-      }
-  }); 
-    
+        }
+      });
+
     // const existingReport = this.createdLocations.find(report => report.troublemakerName === troublemakerName && report.longitude === longitude && report.latitude === latitude);
     // if (existingReport) {
     //   console.log(`The same troublemaker '${troublemakerName}' has already been reported near that location.`);
     //   return;
     // }
     // const troublemakerLocation = reports.map(report => {report.troublemakerName, report.location.longitude, report.location.latitude});
-        
+
 
 
 
@@ -186,7 +186,7 @@ export class ReportFormComponent implements AfterViewInit{
   }
 
   loadLocationList(addRecentToStart: Boolean = false): void {
-    this.reportService.pull().then(
+    this.reportService.getAllReports().subscribe(
       (reports: Report[]) => {
         const reportLocations = reports.map(report => report.location);
         const uniqueLocations = Array.from(new Set(reportLocations.map(location => JSON.stringify(location)))).map(location => JSON.parse(location));
@@ -209,32 +209,32 @@ export class ReportFormComponent implements AfterViewInit{
           this.locationList.unshift({ name: 'Select Location', longitude: 0, latitude: 0, id: '0' });
         }
       }
-        
-
-        // console.log("LocationList: ", this.locationList);
-        
-        
-        // const { id, ...reportLocation } = this.locationList[this.locationList.length - 1];
-        // this.reportForm.controls['location'].setValue(reportLocation);
-
-        // this.reportForm.controls['location'].setValue(this.locationList[this.locationList.length - 1], 7);
 
 
-        // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
-        // selectElement.selectedIndex = this.locationList.length - 1;
-        // console.log(selectElement.selectedIndex, this.locationList.length - 1); // always equal returns -1, then the correct number
+      // console.log("LocationList: ", this.locationList);
 
-        // Set the selected option to the last id in the location list
-        // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
-        // selectElement.selectedIndex = this.locationList.length - 1;
-        // console.log("EQUAL: ", this.locationList.length - 1, selectElement.selectedIndex);
-        // console.log("SelectElement: ", selectElement.options, selectElement.options.selectedIndex);
 
-        // console.log('Controls:', this.reportForm.controls['location']);
-        // if (newLocation) {
-        //   this.reportForm.controls['location'].setValue(null);
-        // }
-        // reports.forEach(report => console.log('Report:', report));
+      // const { id, ...reportLocation } = this.locationList[this.locationList.length - 1];
+      // this.reportForm.controls['location'].setValue(reportLocation);
+
+      // this.reportForm.controls['location'].setValue(this.locationList[this.locationList.length - 1], 7);
+
+
+      // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
+      // selectElement.selectedIndex = this.locationList.length - 1;
+      // console.log(selectElement.selectedIndex, this.locationList.length - 1); // always equal returns -1, then the correct number
+
+      // Set the selected option to the last id in the location list
+      // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
+      // selectElement.selectedIndex = this.locationList.length - 1;
+      // console.log("EQUAL: ", this.locationList.length - 1, selectElement.selectedIndex);
+      // console.log("SelectElement: ", selectElement.options, selectElement.options.selectedIndex);
+
+      // console.log('Controls:', this.reportForm.controls['location']);
+      // if (newLocation) {
+      //   this.reportForm.controls['location'].setValue(null);
+      // }
+      // reports.forEach(report => console.log('Report:', report));
       // }
     );
   }

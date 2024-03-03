@@ -16,7 +16,7 @@ export class ReportService {
   reportFormSubmitted = new Subject<void>();
 
   httpOptions = {
-    headers: new HttpHeaders({'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(private http: HttpClient) { }
@@ -24,7 +24,7 @@ export class ReportService {
 
   createReportCollection(): Observable<any> {
     // Check if the collection exists
-    return this.http.get(this.apiUrl+`data1/`, this.httpOptions)
+    return this.http.get(this.apiUrl + `data1/`, this.httpOptions)
       .pipe(
         catchError(error => {
           if (error.status === 404) {
@@ -62,12 +62,12 @@ export class ReportService {
   deleteReport(report: Report): Observable<any> {
     // Works
     // console.log(report.id);
-    return this.http.delete(`${this.apiUrl+'data1/documents/'}${report.id}/`, this.httpOptions);
+    return this.http.delete(`${this.apiUrl + 'data1/documents/'}${report.id}/`, this.httpOptions);
   }
 
 
   async pull(): Promise<Report[]> {
-    return firstValueFrom(this.http.get<Report[]>(this.apiUrl+'data1/documents/')
+    return firstValueFrom(this.http.get<Report[]>(this.apiUrl + 'data1/documents/')
       .pipe(
         map((response: any) => {
           // Extracts the report data from the response
@@ -78,7 +78,7 @@ export class ReportService {
 
 
   getAllReports(): Observable<Report[]> {
-    return this.http.get<Report[]>(this.apiUrl+'data1/documents/', this.httpOptions)
+    return this.http.get<Report[]>(this.apiUrl + 'data1/documents/', this.httpOptions)
       .pipe(
         map((response: any) => {
           // Extracts the report data from the response
