@@ -15,7 +15,7 @@ export class ReportService {
     if (this.getAllReportsFromStorage().length === 0) {
       const initialReports: Report[] = [
         {
-          id: uuidv4(),
+          id: "b9483a08-6688-4d0d-bc98-3354e7226278",
           reporterInfo: {
             name: 'Jared Tweed',
             phoneNumber: '(778) - 979 - 0126'
@@ -32,7 +32,7 @@ export class ReportService {
           status: 'OPEN'
         },
         {
-          id: uuidv4(),
+          id: "caf0f192-af4c-4aba-a51f-6d5d5967ded3",
           reporterInfo: {
             name: 'Phil Swift',
             phoneNumber: '(833) - 411 - 3539'
@@ -49,7 +49,7 @@ export class ReportService {
           status: 'OPEN'
         },
         {
-          id: uuidv4(),
+          id: "1d9f2932-e5a4-43e7-8287-087575184df8",
           reporterInfo: {
             name: 'Vince Offer',
             phoneNumber: '(877) - 376 - 6016'
@@ -99,6 +99,7 @@ export class ReportService {
 
   getAllReports(): Observable<Report[]> {
     const reports = this.getAllReportsFromStorage();
+    console.log('Reports:', reports);
     return of(reports); // Return reports as an Observable
   }
 

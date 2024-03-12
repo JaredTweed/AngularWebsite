@@ -13,9 +13,9 @@
 }
 
 
-#details-container {
+.details-container {
   background-color: #ffffff;
-  border: 1px solid #000000; 
+  border: 1px solid #000000;
 
   position: fixed;
   top: 40%;
@@ -26,9 +26,13 @@
   margin: 30px;
   border-radius: 8px;
 }
-  
+
 h2 {
   margin-top: 0;
   margin-bottom: 20px;
 }
-  
+
+#deletedReportText {
+  margin: auto;
+
+}
