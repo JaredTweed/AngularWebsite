@@ -95,34 +95,34 @@ export class ReportFormComponent implements AfterViewInit {
         } else {
 
           if (this.reportForm.valid) {
-            const password = prompt('Please enter the password:');
-            if (password) {
-              // this.locationsList.push({name: this.reportForm.value.location, longitude: this.reportForm.value.longitude, latitude: this.reportForm.value.latitude});
+            // const password = prompt('Please enter the password:');
+            // if (password) {
+            // this.locationsList.push({name: this.reportForm.value.location, longitude: this.reportForm.value.longitude, latitude: this.reportForm.value.latitude});
 
-              this.hashService.hashPassword(password).subscribe((hashedPassword: string) => {
-                if (hashedPassword === 'c9fc20c27a5e29813e54ada78dce6c8f') {
+            // this.hashService.hashPassword(password).subscribe((hashedPassword: string) => {
+            // if (hashedPassword === 'c9fc20c27a5e29813e54ada78dce6c8f') {
 
 
-                  console.log('Submitting report:', this.reportForm.value);
+            console.log('Submitting report:', this.reportForm.value);
 
-                  this.reportService.createReport(this.reportForm.value).subscribe(
-                    (response: any) => {
-                      // Handle the response by resetting the form
-                      this.reportForm.reset();
-                      console.log('Report submitted successfully.');
-                      this.reportSubmitted.emit(); // Signal to the parent component that a report has been submitted
-                      this.reportService.reportFormSubmitted.next(); // Signal to the map component that a report has been submitted
-                    },
-                    (error: any) => {
-                      // Handle the error
-                      console.error('There was an error submitting the report:', error);
-                    }
-                  );
-                } else {
-                  alert('Incorrect password. Report submission cancelled. ');// + hashedPassword + ' \'' + password + '\'');
-                }
-              });
-            }
+            this.reportService.createReport(this.reportForm.value).subscribe(
+              (response: any) => {
+                // Handle the response by resetting the form
+                this.reportForm.reset();
+                console.log('Report submitted successfully.');
+                this.reportSubmitted.emit(); // Signal to the parent component that a report has been submitted
+                this.reportService.reportFormSubmitted.next(); // Signal to the map component that a report has been submitted
+              },
+              (error: any) => {
+                // Handle the error
+                console.error('There was an error submitting the report:', error);
+              }
+            );
+            // } else {
+            //   alert('Incorrect password. Report submission cancelled. ');// + hashedPassword + ' \'' + password + '\'');
+            // }
+            // });
+            // }
           } else {
 
             // Get the names of invalid controls in the reportForm

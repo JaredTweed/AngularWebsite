@@ -1,31 +1,35 @@
 <!-- <p>report-form works!</p> -->
 <div class="report-form-container">
-    <!-- <h3>Add Report</h3> -->
-    <div class="text">Password: BaggyJeans</div>
-    <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
-        <div formGroupName="reporterInfo">
-            <input formControlName="name" type="text" placeholder="Your Name" />
-            <input (input)="formatPhoneNumber()" id="phone-number" formControlName="phoneNumber" type="tel" placeholder="Phone Number"/>
-            <div class="requiredText">*Must be exactly 10 numbers</div>
-        </div>
-        <input formControlName="troublemakerName" type="text" placeholder="Troublemaker's Name" />
-        <!-- <div formGroupName="location">
+  <h3>Add Report</h3>
+  <!-- <div class="text">Password: BaggyJeans</div> -->
+  <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="reporterInfo">
+      <input formControlName="name" type="text" placeholder="Your Name" />
+      <input (input)="formatPhoneNumber()" id="phone-number" formControlName="phoneNumber" type="tel"
+        placeholder="Phone Number" />
+      <div class="requiredText">*Must be exactly 10 numbers</div>
+    </div>
+    <input formControlName="troublemakerName" type="text" placeholder="Troublemaker's Name" />
+    <!-- <div formGroupName="location">
             <input formControlName="name" type="text" placeholder="Location Name" list="locations" />
             <input formControlName="longitude" type="text" placeholder="Longitude" />
             <input formControlName="latitude" type="text" placeholder="Latitude" />
         </div> -->
 
-        <div class="text">Select Location:<br><span style="font-size: x-small; color: gray;">Hover for coordinates</span></div>
-        <select id="locationName" placeholder="Location" formGroupName="location">
-            <option *ngFor="let location of locationList" [value]="location.id" [title]="location.longitude + ', ' + location.latitude">{{location.name}}</option>
-        </select>
-        <button (click)="showPopup = true" type="button" class="otherButton">Create Location</button>
-        
-        <input formControlName="pictureUrl" type="text" placeholder="Picture Link (optional)" />
-        <textarea formControlName="extraInfo" placeholder="Extra Information (optional)"></textarea>
-        <button id='submitButton' type="submit">Submit Report</button>
-    </form>
-    
-    
+    <div class="text">Select Location:<br><span style="font-size: x-small; color: gray;">Hover for coordinates</span>
+    </div>
+    <select id="locationName" placeholder="Location" formGroupName="location">
+      <option *ngFor="let location of locationList" [value]="location.id"
+        [title]="location.longitude + ', ' + location.latitude">{{location.name}}</option>
+    </select>
+    <button (click)="showPopup = true" type="button" class="otherButton">Create Location</button>
+
+    <input formControlName="pictureUrl" type="text" placeholder="Picture Link (optional)" />
+    <textarea formControlName="extraInfo" placeholder="Extra Information (optional)"></textarea>
+    <button id='submitButton' type="submit">Submit Report</button>
+  </form>
+
+
 </div>
-<app-location-form *ngIf="showPopup" (locationCreated)="onLocationCreated($event)" (close)="showPopup = false"></app-location-form>
+<app-location-form *ngIf="showPopup" (locationCreated)="onLocationCreated($event)"
+  (close)="showPopup = false"></app-location-form>

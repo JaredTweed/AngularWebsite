@@ -1,7 +1,7 @@
 .report-form-container {
   background-color: #fff;
   border: 1px solid #3b3b3b;
-  
+
   /* Same as report-form */
   position: absolute;
   top: 0px;
@@ -13,6 +13,7 @@
   margin: 30px;
   border-radius: 8px;
   z-index: 4;
+  min-width: 210px;
 }
 
 @media (max-width: 602px) {
@@ -22,7 +23,18 @@
   }
 }
 
-input, select, textarea, button, .requiredText, .text {
+h3 {
+  margin-top: 0;
+  margin-left: 5px;
+  margin-bottom: 10px;
+}
+
+input,
+select,
+textarea,
+button,
+.requiredText,
+.text {
   border-radius: 4px;
   margin: 5px;
 }
@@ -31,13 +43,17 @@ form {
   width: calc(100% - 20px);
 }
 
-input, select, textarea, .otherButton {
+input,
+select,
+textarea,
+.otherButton {
   width: 100%;
   padding: 5px;
   border: 1px solid #ccc;
 }
 
-select, .otherButton {
+select,
+.otherButton {
   width: calc(100% + 12px);
 }
 
@@ -78,4 +94,3 @@ textarea {
 #submitButton:hover {
   background-color: #45a049;
 }
-

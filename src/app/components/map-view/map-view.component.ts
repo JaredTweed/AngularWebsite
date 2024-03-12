@@ -41,16 +41,15 @@ export class MapViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initMap();
+    this.updateMarkers();
     this.reportService.reportFormSubmitted.subscribe(() => {
       this.updateMarkers();
     });
-    
-    this.updateMarkers();
-    this.initMap();
   }
 
   private initMap(): void {
-    this.map = L.map('map', {center: [49.200, -123.0000], zoom: 10});
+    this.map = L.map('map', { center: [49.200, -123.0000], zoom: 10 });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -78,6 +77,8 @@ export class MapViewComponent implements OnInit {
         return result;
       }, []);
 
+      console.log("Grouped reports: ", groupedReports);
+
       groupedReports.forEach(report => this.addMarker(report));
       console.log(this.markersLayer);
       this.markersLayer.addTo(this.map); // Add the layer to the map once all the markers have been added
@@ -95,43 +96,42 @@ export class MapViewComponent implements OnInit {
         .addTo(this.markersLayer);
     }
   }
-
-
-
-
-
-
-
-  // updateMarkers(): void {
-  //   this.markersLayer.clearLayers(); // Clear existing layers
-  //   this.reportService.getAllReports().subscribe((reports: Report[]) => {
-  //     reports.forEach(report => this.addMarker(report));
-  //     console.log(this.markersLayer);
-  //     this.markersLayer.addTo(this.map); // Add the layer to the map once all the markers have been added
-  //   });
-  // }
-
-  // addMarker(report: Report): void {
-  //   if(report.longitude != null && report.latitude != null) { // Change to '&&' for proper checking
-  //     const marker = L.marker([report.latitude, report.longitude])
-  //       .bindPopup(this.createPopupContent(report));
-  //     this.markersLayer.addLayer(marker); // Add marker to the layer group
-  //   }
-  // }
-
-
-  // private createPopupContent(report: Report): string {
-  //   return `<div>
-  //             <h4>${report.troublemakerName}</h4>
-  //             <p>Reported by: ${report.reporterInfo.name}</p>
-  //             <p>Location: ${report.location}</p>
-  //             <p>Details: ${report.extraInfo}</p>
-  //           </div>`;
-  // }
-
-  
-
 }
+
+
+
+
+
+// updateMarkers(): void {
+//   this.markersLayer.clearLayers(); // Clear existing layers
+//   this.reportService.getAllReports().subscribe((reports: Report[]) => {
+//     reports.forEach(report => this.addMarker(report));
+//     console.log(this.markersLayer);
+//     this.markersLayer.addTo(this.map); // Add the layer to the map once all the markers have been added
+//   });
+// }
+
+// addMarker(report: Report): void {
+//   if(report.longitude != null && report.latitude != null) { // Change to '&&' for proper checking
+//     const marker = L.marker([report.latitude, report.longitude])
+//       .bindPopup(this.createPopupContent(report));
+//     this.markersLayer.addLayer(marker); // Add marker to the layer group
+//   }
+// }
+
+
+// private createPopupContent(report: Report): string {
+//   return `<div>
+//             <h4>${report.troublemakerName}</h4>
+//             <p>Reported by: ${report.reporterInfo.name}</p>
+//             <p>Location: ${report.location}</p>
+//             <p>Details: ${report.extraInfo}</p>
+//           </div>`;
+// }
+
+
+
+
 
 
 
