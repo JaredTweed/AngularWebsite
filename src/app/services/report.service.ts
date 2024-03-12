@@ -79,6 +79,7 @@ export class ReportService {
   // Utility method to save reports to localStorage
   private saveReportsToStorage(reports: Report[]): void {
     localStorage.setItem(this.reportsKey, JSON.stringify(reports));
+    this.reportFormSubmitted.next(); // Emit an event to notify subscribers that a report has been added
   }
 
   createReport(report: Report): Observable<any> {
