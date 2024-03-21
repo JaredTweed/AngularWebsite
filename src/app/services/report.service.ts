@@ -64,6 +64,24 @@ export class ReportService {
           extraInfo: 'ShamWow!!!!!',
           timeDate: new Date(),
           status: 'OPEN'
+        },
+        {
+          id: "8c6f3c3d-3e0e-4f8f-8d6e-5e5f0c5f4e5b",
+          reporterInfo: {
+            name: 'Marty McFly',
+            phoneNumber: '(778) - 555 - 1985'
+          },
+          troublemakerName: 'Marty McFly From 1973',
+          location: {
+            name: 'Aberdeen Centre',
+            longitude: -123.1335,
+            latitude: 49.1841
+          },
+          // pictureUrl: 'https://th.bing.com/th/id/OIG2.dTX7Ie72aL0who8hd.Qx',
+          pictureUrl: '../../assets/baby-mcfly-chaos.jpeg',
+          extraInfo: 'Causing mild chaos while trying to start a flash mob with unsuspecting shoppers.',
+          timeDate: new Date(),
+          status: 'OPEN'
         }
       ];
       this.saveReportsToStorage(initialReports);
