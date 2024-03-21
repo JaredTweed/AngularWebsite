@@ -8,9 +8,6 @@
   because border-collapse does not work with overflow: hidden;*/
   border-spacing: 0;
 
-  display: table;
-
-
   position: absolute;
   top: 650px;
   width: calc(100% - 60px);
@@ -33,8 +30,8 @@
 th,
 td {
   text-align: center;
-  vertical-align: middle;
   padding: 10px;
+  height: 40px;
 }
 
 th {
@@ -43,7 +40,6 @@ th {
 }
 
 td {
-  padding: 10px;
   border: 1px solid #ccc;
   border-bottom: none;
   border-right: none;
@@ -76,15 +72,7 @@ tr:nth-child(even) {
   cursor: pointer;
 }
 
-/* Show the details when hovering on the details button */
-#report-details {
-  display: none;
-}
 
-#details:hover~#report-details {
-  display: block;
-  background-color: #f5f5f5;
-}
 
 button {
   background-color: #6c757d;
@@ -93,8 +81,8 @@ button {
   cursor: pointer;
   border-radius: 4px;
   padding: 5px;
+  height: 100%;
   width: 100%;
-  /* height: 100%; */
 }
 
 button:hover {

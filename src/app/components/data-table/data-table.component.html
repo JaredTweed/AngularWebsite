@@ -1,4 +1,3 @@
-<!-- <p>data-table works!</p> -->
 <app-report-form (reportSubmitted)="loadReports()"></app-report-form>
 <div class="table-responsive">
   <table class="table">
@@ -21,20 +20,16 @@
       <tr *ngIf="reports.length == 0">
         <td colspan="6">No reports found</td>
       </tr>
-      <!-- <div *ngIf="reports.length > 0"> -->
       <tr *ngFor="let report of reports">
         <!-- the data table table loads before http.get is completed in the service -->
         <td>{{ report.reporterInfo.name }}</td>
         <td>{{ report.troublemakerName }}</td>
         <td>{{ report.location.name }}</td>
         <td>{{ report.timeDate | date:'MMM d, h:mm a' }}</td>
-        <!-- <td id="details">Hover to view</td> -->
+
         <td><button [routerLink]="['details', report.id]">View Details</button></td>
         <td><button (click)="deleteReport(report)">Delete</button></td>
-        <!-- <app-report-details id="report-details" [report]="report"></app-report-details> -->
       </tr>
-
-      <!-- Image testing: "https://i.pinimg.com/originals/ca/f8/5d/caf85d12606cf1d9e9990aa750ef3103.jpg" -->
     </tbody>
   </table>
 </div>

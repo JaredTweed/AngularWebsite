@@ -45,10 +45,14 @@
   width: 100%;
   align-self: center;
   margin-bottom: 8px;
+
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 input {
   border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .requiredText {
@@ -64,15 +68,22 @@ button {
   margin: 5px;
   margin-bottom: 0;
   padding: 5px;
-  border: 1px solid #ccc;
-  background-color: #f2f2f2;
+  border: none;
+  color: white;
+  background-color: #6c757d;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #e6e6e6;
+  background-color: #495057;
 }
 
 button:active {
-  background-color: #d9d9d9;
+  background-color: #343a40;
+}
+
+button:disabled {
+  background-color: #ced4da;
+  color: #6c757d;
+  cursor: not-allowed;
 }
