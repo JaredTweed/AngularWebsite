@@ -77,8 +77,8 @@ export class ReportService {
             longitude: -123.1335,
             latitude: 49.1841
           },
-          // pictureUrl: 'https://th.bing.com/th/id/OIG2.dTX7Ie72aL0who8hd.Qx',
-          pictureUrl: '../../assets/baby-mcfly-chaos.jpeg',
+          pictureUrl: 'https://th.bing.com/th/id/OIG2.dTX7Ie72aL0who8hd.Qx',
+          // pictureUrl: '../assets/baby-mcfly-chaos.jpeg',
           extraInfo: 'Causing mild chaos while trying to start a flash mob with unsuspecting shoppers.',
           timeDate: new Date(),
           status: 'OPEN'
