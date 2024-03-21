@@ -30,7 +30,7 @@
         <td>{{ report.timeDate | date:'MMM d, h:mm a' }}</td>
         <!-- <td id="details">Hover to view</td> -->
         <td><button [routerLink]="['details', report.id]">View Details</button></td>
-        <td><button class="btn btn-danger" (click)="deleteReport(report)">Delete</button></td>
+        <td><button (click)="deleteReport(report)">Delete</button></td>
         <!-- <app-report-details id="report-details" [report]="report"></app-report-details> -->
       </tr>
 

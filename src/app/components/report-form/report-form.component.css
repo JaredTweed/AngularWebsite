@@ -11,14 +11,14 @@
   padding: 10px;
   padding-bottom: 30px;
   margin: 30px;
-  border-radius: 8px;
+  border-radius: 18px;
   z-index: 4;
   min-width: 210px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   font-family: sans-serif;
 }
 
-@media (max-width: 602px) {
+@media (max-width: 650px) {
   .report-form-container {
     left: 0;
     top: 640px;
@@ -85,6 +85,10 @@ textarea {
   background-color: #5a6268;
 }
 
+.otherButton:active {
+  background-color: #4e555b;
+}
+
 #submitButton {
   background-color: #4CAF50;
   color: white;
@@ -95,4 +99,8 @@ textarea {
 
 #submitButton:hover {
   background-color: #45a049;
+}
+
+#submitButton:active {
+  background-color: #3e8e41;
 }

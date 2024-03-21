@@ -18,9 +18,14 @@
   z-index: -1;
   min-width: 232px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+
+  border-radius: 18px;
+  border: 1px solid #000000;
+  overflow: hidden;
+
 }
 
-@media (max-width: 602px) {
+@media (max-width: 650px) {
   .map-container {
     right: 0;
     margin-right: 30px;
@@ -28,21 +33,7 @@
   }
 }
 
-#details-container {
-  background-color: #ffffff;
-  position: absolute;
-  top: 0px;
-  left: 0;
-  right: 50%;
-  bottom: 35%;
-  margin: 30px;
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #000000;
-}
-
 .map-frame {
-  border: 2px solid black;
   height: 100%;
 }
 
