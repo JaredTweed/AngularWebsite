@@ -1,24 +1,28 @@
 <!-- <p>data-table works!</p> -->
 <app-report-form (reportSubmitted)="loadReports()"></app-report-form>
 <div class="table-responsive">
-<table class="table">
-    
+  <table class="table">
+
     <thead>
-    <tr>
-        <th scope="col" id="reporter-header" (click)="sortReports(1)">Reporter</th>
-        <th scope="col" id="troublemaker-header" (click)="sortReports(2)">Troublemaker</th>
-        <th scope="col" id="location-header" (click)="sortReports(3)">Location</th>
-        <th scope="col" id="time-reported-header" (click)="sortReports(4)">Time Reported</th>
+      <tr>
+        <th scope="col" id="reporter-header" (click)="sortReports(1)">Reporter <img
+            src="../../assets/sort-tables-icon.png" width="12px" height="12px"></th>
+        <th scope="col" id="troublemaker-header" (click)="sortReports(2)">Troublemaker <img
+            src="../../assets/sort-tables-icon.png" width="12px" height="12px"></th>
+        <th scope="col" id="location-header" (click)="sortReports(3)">Location <img
+            src="../../assets/sort-tables-icon.png" width="12px" height="12px"></th>
+        <th scope="col" id="time-reported-header" (click)="sortReports(4)">Time Reported <img
+            src="../../assets/sort-tables-icon.png" width="12px" height="12px"></th>
         <th scope="col">Details</th>
         <th scope="col">Delete</th>
-    </tr>
+      </tr>
     </thead>
     <tbody>
-    <tr *ngIf="reports.length == 0">
+      <tr *ngIf="reports.length == 0">
         <td colspan="6">No reports found</td>
-    </tr>
-    <!-- <div *ngIf="reports.length > 0"> -->
-    <tr *ngFor="let report of reports">
+      </tr>
+      <!-- <div *ngIf="reports.length > 0"> -->
+      <tr *ngFor="let report of reports">
         <!-- the data table table loads before http.get is completed in the service -->
         <td>{{ report.reporterInfo.name }}</td>
         <td>{{ report.troublemakerName }}</td>
@@ -28,12 +32,9 @@
         <td><button [routerLink]="['details', report.id]">View Details</button></td>
         <td><button class="btn btn-danger" (click)="deleteReport(report)">Delete</button></td>
         <!-- <app-report-details id="report-details" [report]="report"></app-report-details> -->
-    </tr>
+      </tr>
 
-    <!-- Image testing: "https://i.pinimg.com/originals/ca/f8/5d/caf85d12606cf1d9e9990aa750ef3103.jpg" -->
+      <!-- Image testing: "https://i.pinimg.com/originals/ca/f8/5d/caf85d12606cf1d9e9990aa750ef3103.jpg" -->
     </tbody>
-</table>
+  </table>
 </div>
-
-
-  

@@ -1,16 +1,23 @@
 .table {
 
-  /* width: 48%; */
-  border-collapse: collapse;
-  /* border-radius: 8px; */
-  /* padding: 20px; */
-  border: 1px solid #ddd;
+  /* overflow:hidden; is necessary for making rounded corners work */
+  border: 1px solid black;
+  border-radius: 8px;
+  overflow: hidden;
+  /* border-spacing: 0; is used instead of border-collapse: collapse; 
+  because border-collapse does not work with overflow: hidden;*/
+  border-spacing: 0;
+
+  display: table;
+
 
   position: absolute;
   top: 650px;
   width: calc(100% - 60px);
   margin: 20px;
   min-width: 234px;
+  font-family: sans-serif;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 602px) {
@@ -19,6 +26,7 @@
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+    border-collapse: collapse;
   }
 }
 
@@ -37,11 +45,19 @@ th {
 td {
   padding: 10px;
   border: 1px solid #ccc;
+  border-bottom: none;
+  border-right: none;
 }
 
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
+
+
+
+
+
 
 
 #reporter-header {

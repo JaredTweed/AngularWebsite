@@ -17,6 +17,7 @@
   margin-right: 0;
   z-index: -1;
   min-width: 232px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 602px) {
