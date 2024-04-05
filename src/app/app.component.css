@@ -1,0 +1,33 @@
+#blob {
+  /* background-color: black; */
+  height: 600px;
+  aspect-ratio: 1;
+  position: absolute;
+  overflow: hidden;
+  z-index: -1;
+
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: linear-gradient(to right, aquamarine, mediumpurple);
+
+  animation: rotate 6s linear infinite;
+  filter: blur(80px);
+}
+
+
+
+@keyframes rotate {
+  from {
+    rotate: 0deg;
+  }
+
+  50% {
+    scale: 1 1.5;
+  }
+
+  to {
+    rotate: 360deg;
+  }
+}

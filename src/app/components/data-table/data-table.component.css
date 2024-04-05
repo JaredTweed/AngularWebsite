@@ -11,7 +11,7 @@
   position: absolute;
   top: 650px;
   width: calc(100% - 60px);
-  margin: 20px;
+  margin: 30px;
   min-width: 234px;
   font-family: sans-serif;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -46,8 +46,13 @@ td {
 }
 
 tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
+
 
 
 
