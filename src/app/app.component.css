@@ -1,6 +1,7 @@
 #blob {
   /* background-color: black; */
   height: 600px;
+  /* height: 50vh; */
   aspect-ratio: 1;
   position: absolute;
   overflow: hidden;
@@ -15,8 +16,6 @@
   animation: rotate 6s linear infinite;
   filter: blur(80px);
 }
-
-
 
 @keyframes rotate {
   from {

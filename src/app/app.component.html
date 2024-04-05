@@ -1,17 +1,11 @@
-<!-- <div style="overflow: hidden; position: static; width: 100px; height: 100px;"> -->
+<div style="overflow:hidden; position: absolute; z-index: -1; height: 100%; width: 100%; top: 0; left: 0;">
+  <div id="blob" [ngStyle]="{'left.px': blobX, 'top.px': blobY, 'position': 'absolute'}"></div>
 
-
-
-<!-- <div style="width: 1vw; height: 1vw; position: absolute; overflow: hidden; "> -->
-<div id="blob" [ngStyle]="{'left.px': blobX, 'top.px': blobY, 'position': 'absolute'}"></div>
-<!-- </div> -->
-
-<div style="overflow-y:scroll; position: absolute; z-index: -1; height: 100%; width: 100%; top: 0; left: 0;">
-  <app-map-view></app-map-view>
-  <!-- <app-report-form></app-report-form> -->
-  <app-data-table></app-data-table>
-  <!-- <app-report-details></app-report-details> -->
-
-  <router-outlet></router-outlet>
+  <div style="overflow-y:scroll; position: absolute; z-index: -1; height: 100%; width: 100%; top: 0; left: 0;">
+    <app-map-view></app-map-view>
+    <!-- <app-report-form></app-report-form> -->
+    <app-data-table></app-data-table>
+    <!-- <app-report-details></app-report-details> -->
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<!-- </div> -->

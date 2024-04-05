@@ -13,6 +13,8 @@ export class AppComponent {
 
   mouseX = 0;
   mouseY = 0;
+  touchX = 0;
+  touchY = 0;
 
   @HostListener('document:mousemove', ['$event'])
   updateMousePosition(event: MouseEvent): void {
@@ -20,20 +22,25 @@ export class AppComponent {
     this.mouseY = event.pageY;
   }
 
+  @HostListener('document:touchmove', ['$event'])
+  updateTouchPosition(event: TouchEvent): void {
+    const touch = event.touches[0];
+    this.touchX = touch.pageX;
+    this.touchY = touch.pageY;
+  }
 
   updatePosition(): void {
-
     const speed = 0.01;
-    const targetX = this.mouseX;
-    const targetY = this.mouseY;
-
+    const targetX = this.mouseX || this.touchX;
+    const targetY = this.mouseY || this.touchY;
 
     setTimeout(() => {
       this.blobX += (targetX - this.blobX) * speed;
       this.blobY += (targetY - this.blobY) * speed;
-
     }, 200);
   }
+
+
 
   ngOnInit(): void {
     setInterval(() => {
