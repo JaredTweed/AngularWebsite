@@ -56,6 +56,10 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('theme')) {
+      localStorage.setItem('theme', 'dark');
+    }
+
     // if (this.getBrowserName() === 'Edge' || this.getBrowserName() === 'Firefox') {
     setInterval(() => {
 

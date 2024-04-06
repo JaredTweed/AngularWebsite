@@ -11,7 +11,7 @@ import { defaultEquals } from '@angular/core/primitives/signals';
 export class DataTableComponent implements OnInit {
   // @Output() coordinates = new EventEmitter<Report>();
 
-  dataTheme = localStorage.getItem('theme') || 'light';
+  dataTheme = localStorage.getItem('theme') || 'dark';
   reports: Report[] = [];
   sortColumn: number = 0;
   sortDirection: string = 'asc';
@@ -25,7 +25,7 @@ export class DataTableComponent implements OnInit {
   }
 
   updateTheme(): void {
-    this.dataTheme = localStorage.getItem('theme') || 'light';
+    this.dataTheme = localStorage.getItem('theme') || 'dark';
   }
 
   reloadPage(): void { location.reload(); }

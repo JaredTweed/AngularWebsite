@@ -28,12 +28,26 @@
   }
 }
 
+#title-theme-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px;
+  width: 100%;
+}
+
 h3 {
-  margin-top: 0;
-  margin-left: 5px;
+  flex: 4;
+  margin: 5px;
+  margin-top: 5px;
   margin-bottom: 10px;
 
+  font-size: xx-large;
   color: var(--text-color);
+}
+
+#theme-button {
+  flex: 1;
+  margin-bottom: 10px;
 }
 
 input,
@@ -70,7 +84,7 @@ select,
 textarea {
   resize: vertical;
   min-height: 50px;
-  max-height: 150px;
+  max-height: 160px;
   font-family: sans-serif;
   font-size: 13px;
 }

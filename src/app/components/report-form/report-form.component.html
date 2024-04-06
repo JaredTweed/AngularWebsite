@@ -1,10 +1,13 @@
 <!-- <p>report-form works!</p> -->
 <div class="report-form-container">
-  <h3>Add Report</h3>
+  <div id="title-theme-container">
+    <h3>Report Form</h3>
+    <button class="otherButton" id="theme-button" (click)="toggleTheme()">Toggle Theme</button>
+
+  </div>
 
   <!-- <div class="text">Password: BaggyJeans</div> -->
   <form [formGroup]="reportForm" (ngSubmit)="onSubmit()">
-    <button class="otherButton" type="button" (click)="toggleTheme()">Toggle Theme</button>
     <div formGroupName="reporterInfo">
       <input formControlName="name" type="text" placeholder="Your Name" />
       <input (input)="formatPhoneNumber()" id="phone-number" formControlName="phoneNumber" type="tel"

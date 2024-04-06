@@ -1,16 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-:root {
-  --background-color: #f9f9f9;
-  --border-color: #3b3b3b;
-  --internal-border-color: #ccc;
-  --even-table-row-color: #f2f2f2;
-  --text-color: black;
-  --red-text-color: rgb(143, 0, 0);
-
-  --no-clear-background-color: #f9f9f9;
-  --no-clear-internal-border-color: #ccc;
-}
-
+/* :root { */
 [data-theme='dark'] {
   --background-color: #3b3b3b;
   --border-color: gray;
@@ -33,4 +22,16 @@
 
   --no-clear-background-color: #3b3b3b;
   --no-clear-internal-border-color: gray;
+}
+
+[data-theme='light'] {
+  --background-color: #f9f9f9;
+  --border-color: #3b3b3b;
+  --internal-border-color: #ccc;
+  --even-table-row-color: #f2f2f2;
+  --text-color: black;
+  --red-text-color: rgb(143, 0, 0);
+
+  --no-clear-background-color: #f9f9f9;
+  --no-clear-internal-border-color: #ccc;
 }

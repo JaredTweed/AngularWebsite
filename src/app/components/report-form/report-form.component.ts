@@ -267,7 +267,7 @@ export class ReportFormComponent implements AfterViewInit {
     let currentTheme = document.body.getAttribute('data-theme');
     const themes = ['dark', 'clear', 'light'];
     if (currentTheme === null) {
-      currentTheme = 'light';
+      currentTheme = 'dark';
     }
     const currentIndex = themes.indexOf(currentTheme);
     const newIndex = (currentIndex + 1) % themes.length;
