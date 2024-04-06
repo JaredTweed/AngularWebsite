@@ -28,7 +28,7 @@ export class ReportService {
           },
           pictureUrl: '',
           extraInfo: '',
-          timeDate: new Date(new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).setHours(12, 7, 0, 0)),
+          timeDate: new Date(new Date(new Date().getTime() - 26 * 24 * 60 * 60 * 1000).setHours(10, 21, 0, 0)),
           status: 'OPEN'
         },
         {
@@ -45,7 +45,7 @@ export class ReportService {
           },
           pictureUrl: 'https://static.wikia.nocookie.net/baldi-fanon/images/b/b6/IMG_1094.png',
           extraInfo: '',
-          timeDate: new Date(new Date(new Date().getTime() - 13 * 24 * 60 * 60 * 1000).setHours(17, 43, 0, 0)),
+          timeDate: new Date(new Date(new Date().getTime() - 13 * 24 * 60 * 60 * 1000).setHours(17, 31, 0, 0)),
           status: 'OPEN'
         },
         {
@@ -62,7 +62,7 @@ export class ReportService {
           },
           pictureUrl: '',
           extraInfo: 'ShamWow!!!!!',
-          timeDate: new Date(new Date(new Date().getTime() - 13 * 24 * 60 * 60 * 1000).setHours(17, 31, 0, 0)),
+          timeDate: new Date(new Date(new Date().getTime() - 13 * 24 * 60 * 60 * 1000).setHours(17, 43, 0, 0)),
           status: 'OPEN'
         },
         {
@@ -80,7 +80,7 @@ export class ReportService {
           pictureUrl: 'https://th.bing.com/th/id/OIG2.dTX7Ie72aL0who8hd.Qx',
           // pictureUrl: '../assets/baby-mcfly-chaos.jpeg',
           extraInfo: 'Causing mild chaos while trying to start a flash mob with unsuspecting shoppers.',
-          timeDate: new Date(new Date(new Date().getTime() - 26 * 24 * 60 * 60 * 1000).setHours(10, 21, 0, 0)),
+          timeDate: new Date(new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).setHours(12, 7, 0, 0)),
           status: 'OPEN'
         }
       ];
