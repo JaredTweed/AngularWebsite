@@ -21,3 +21,7 @@ This project is a web application that uses [Angular](https://github.com/angular
 7. **HTML/CSS**: The layout and styling of the application are done using HTML and CSS. This includes creating responsive layouts and custom styles. CSS was used to style the report form and the map view, and to create a consistent look and feel across the application.
 
 8. **RxJS**: This project uses RxJS for handling asynchronous operations and event-based programs by using observables. Observables were used to handle HTTP requests and to manage event emissions between components.
+
+  
+
+The compressed build is here: https://github.com/JaredTweed/AngularProject-webpage/
