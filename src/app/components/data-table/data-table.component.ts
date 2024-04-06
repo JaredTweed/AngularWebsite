@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, OnInit, Output } from '@angular/core';
 import { ReportService } from '../../services/report.service';
 import { Report } from '../../models/report.model';
+import { defaultEquals } from '@angular/core/primitives/signals';
 
 @Component({
   selector: 'app-data-table',
@@ -10,17 +11,24 @@ import { Report } from '../../models/report.model';
 export class DataTableComponent implements OnInit {
   // @Output() coordinates = new EventEmitter<Report>();
 
+  dataTheme = localStorage.getItem('theme') || 'light';
   reports: Report[] = [];
   sortColumn: number = 0;
   sortDirection: string = 'asc';
 
-  constructor(private reportService: ReportService) {this.reports = [];}
+  constructor(private reportService: ReportService) {
+    this.reports = [];
+  }
 
   ngOnInit(): void {
     this.loadReports();
   }
 
-  reloadPage(): void {location.reload();}
+  updateTheme(): void {
+    this.dataTheme = localStorage.getItem('theme') || 'light';
+  }
+
+  reloadPage(): void { location.reload(); }
 
   loadReports(): void {
     this.reportService.getAllReports().subscribe(
@@ -55,6 +63,8 @@ export class DataTableComponent implements OnInit {
   }
 
   sortReports(column: number): void {
+    console.log(this.dataTheme)
+
     if (this.sortColumn === column) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
@@ -132,6 +142,6 @@ export class DataTableComponent implements OnInit {
     // <app-report-details [report]="report"></app-report-details>
   }
 
-  
+
 }
 

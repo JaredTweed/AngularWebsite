@@ -12,8 +12,7 @@
 }
 
 #createLocation {
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background-color: var(--no-clear-background-color);
   z-index: 101;
 
   /* Same as report-form */
@@ -27,8 +26,10 @@
   margin: 30px;
   border-radius: 18px;
   min-width: 194px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   font-family: sans-serif;
+
+  color: var(--text-color);
 }
 
 @media (max-width: 650px) {
@@ -52,12 +53,14 @@
 
 input {
   border-radius: 4px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--no-clear-internal-border-color);
+  background-color: var(--no-clear-background-color);
+  color: var(--text-color);
 }
 
 .requiredText {
   font-size: .9rem;
-  color: rgb(143, 0, 0);
+  color: var(--red-text-color);
   margin-top: 0;
   margin-bottom: 10px;
   font-style: italic;

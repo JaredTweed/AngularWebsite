@@ -26,6 +26,7 @@ export class ReportFormComponent implements AfterViewInit {
   locationList: LocationWithId[];
   createdLocations: ReportLocation[];
   @Output() reportSubmitted = new EventEmitter();
+  @Output() themeChange = new EventEmitter();
 
   constructor(private fb: FormBuilder, private reportService: ReportService, private hashService: HashService) {
     this.locationList = [];
@@ -45,6 +46,9 @@ export class ReportFormComponent implements AfterViewInit {
       extraInfo: [''],
       timeDate: [''],
     });
+
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    document.body.setAttribute('data-theme', currentTheme);
   }
 
   // Define a custom validator function for phone number
@@ -257,4 +261,21 @@ export class ReportFormComponent implements AfterViewInit {
   //   }
   //   return '';
   // }
+
+
+  toggleTheme() {
+    let currentTheme = document.body.getAttribute('data-theme');
+    const themes = ['dark', 'clear', 'light'];
+    if (currentTheme === null) {
+      currentTheme = 'light';
+    }
+    const currentIndex = themes.indexOf(currentTheme);
+    const newIndex = (currentIndex + 1) % themes.length;
+    const newTheme = themes[newIndex];
+    document.body.setAttribute('data-theme', newTheme);
+
+    // Save to localStorage if needed
+    localStorage.setItem('theme', newTheme);
+    this.themeChange.emit();
+  }
 }

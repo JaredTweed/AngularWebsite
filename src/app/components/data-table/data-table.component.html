@@ -1,21 +1,24 @@
-<app-report-form (reportSubmitted)="loadReports()"></app-report-form>
+<app-report-form (reportSubmitted)="loadReports()" (themeChange)="updateTheme()"></app-report-form>
 <div class="table-responsive">
   <table class="table">
 
     <thead>
       <tr>
-        <th scope="col" id="reporter-header" (click)="sortReports(1)">Reporter <img
+        <th scope="col" id="reporter-header" (click)="sortReports(1)">
+          Reporter
+          <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sort_both_small.svg/910px-Sort_both_small.svg.png"
-            width="12px" height="12px"></th>
+            width="12px" height="12px" [style.filter]="dataTheme === 'dark' ? 'invert(100%)' : 'none'">
+        </th>
         <th scope="col" id="troublemaker-header" (click)="sortReports(2)">Troublemaker <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sort_both_small.svg/910px-Sort_both_small.svg.png"
-            width="12px" height="12px"></th>
+            width="12px" height="12px" [style.filter]="dataTheme === 'dark' ? 'invert(100%)' : 'none'"></th>
         <th scope="col" id="location-header" (click)="sortReports(3)">Location <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sort_both_small.svg/910px-Sort_both_small.svg.png"
-            width="12px" height="12px"></th>
+            width="12px" height="12px" [style.filter]="dataTheme === 'dark' ? 'invert(100%)' : 'none'"></th>
         <th scope="col" id="time-reported-header" (click)="sortReports(4)">Time Reported <img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/Sort_both_small.svg/910px-Sort_both_small.svg.png"
-            width="12px" height="12px"></th>
+            width="12px" height="12px" [style.filter]="dataTheme === 'dark' ? 'invert(100%)' : 'none'"></th>
         <th scope="col">Details</th>
         <th scope="col">Delete</th>
       </tr>

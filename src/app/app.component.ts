@@ -37,7 +37,7 @@ export class AppComponent {
     setTimeout(() => {
       this.blobX += (targetX - this.blobX) * speed;
       this.blobY += (targetY - this.blobY) * speed;
-    }, 200);
+    }, 100);
   }
 
 

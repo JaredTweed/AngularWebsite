@@ -1,7 +1,6 @@
 .table {
-
   /* overflow:hidden; is necessary for making rounded corners work */
-  border: 1px solid black;
+  border: 1px solid var(--border-color);
   border-radius: 18px;
   overflow: hidden;
   /* border-spacing: 0; is used instead of border-collapse: collapse; 
@@ -14,7 +13,9 @@
   margin: 30px;
   min-width: 234px;
   font-family: sans-serif;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  font-size: 16px;
+  color: var(--text-color);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 1);
 }
 
 @media (max-width: 650px) {
@@ -35,22 +36,26 @@ td {
 }
 
 th {
-  background-color: #f2f2f2;
+  background-color: var(--even-table-row-color);
   font-weight: bold;
 }
 
 td {
-  border: 1px solid #ccc;
+  border: 1px solid var(--internal-border-color);
   border-bottom: none;
   border-right: none;
 }
 
+td:first-child {
+  border-left: none;
+}
+
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: var(--even-table-row-color);
 }
 
 tr:nth-child(odd) {
-  background-color: #f9f9f9;
+  background-color: var(--background-color);
 }
 
 
@@ -88,6 +93,8 @@ button {
   padding: 5px;
   height: 100%;
   width: 100%;
+  font-family: sans-serif;
+  font-size: 16px;
 }
 
 button:hover {
