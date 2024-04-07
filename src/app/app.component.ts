@@ -15,6 +15,7 @@ export class AppComponent {
   mouseY = 0;
   touchX = 0;
   touchY = 0;
+  touchActive = false;
 
   getBrowserName(): string {
     console.log('User Agent:', window.navigator.userAgent);
@@ -42,10 +43,15 @@ export class AppComponent {
     return browserName;
   }
 
+  isMobileDevice(): boolean {
+    return /Mobi/i.test(window.navigator.userAgent);
+  }
+
   @HostListener('document:mousemove', ['$event'])
   updateMousePosition(event: MouseEvent): void {
     this.mouseX = event.pageX;
     this.mouseY = event.pageY;
+    this.touchActive = false;
   }
 
   @HostListener('document:touchmove', ['$event'])
@@ -53,65 +59,58 @@ export class AppComponent {
     const touch = event.touches[0];
     this.touchX = touch.pageX;
     this.touchY = touch.pageY;
+    this.touchActive = true;
   }
+
+  private requestId: number | undefined;
+  private lastFrameTime: number = 0;
+  private readonly frameRateLimit: number = 1000 / 60; // 60 fps
+
+  private speed = 0.00005; // Base speed
+  private acceleration = 0.00005; // Acceleration factor
+  private maxSpeed = 0.03; // Maximum speed
 
   ngOnInit(): void {
     if (!localStorage.getItem('theme')) {
       localStorage.setItem('theme', 'dark');
     }
 
-    // if (this.getBrowserName() === 'Edge' || this.getBrowserName() === 'Firefox') {
-    setInterval(() => {
-
-      if (this.blobX !== this.mouseX && this.blobY != this.mouseY) {
-        const speed = 0.01;
-        const targetX = this.mouseX || this.touchX;
-        const targetY = this.mouseY || this.touchY;
-
-        setTimeout(() => {
-          this.blobX += (targetX - this.blobX) * speed;
-          this.blobY += (targetY - this.blobY) * speed;
-        }, 100);
+    const animate = (currentTime: number) => {
+      if (!this.lastFrameTime) {
+        this.lastFrameTime = currentTime;
       }
-    }, 1);
-    // }
+
+      const delta = currentTime - this.lastFrameTime;
+
+      if (delta > this.frameRateLimit) {
+        const targetX = this.touchActive ? this.touchX : this.mouseX;
+        const targetY = this.touchActive ? this.touchY : this.mouseY;
+        const dx = targetX - this.blobX;
+        const dy = targetY - this.blobY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        // Update speed based on distance to target, mimicking acceleration
+        const currentSpeed = Math.min(this.speed + this.acceleration * distance, this.maxSpeed);
+
+        if (distance > 1) { // Check if blob is not already at the target to avoid jittering
+          setTimeout(() => {
+            this.blobX += dx * currentSpeed;
+            this.blobY += dy * currentSpeed;
+          }, 80);
+        }
+
+        this.lastFrameTime = currentTime - (delta % this.frameRateLimit);
+      }
+
+      this.requestId = requestAnimationFrame(animate);
+    };
+
+    animate(0);
   }
 
-
-
-  // private requestId: number | undefined;
-  // private lastFrameTime: number = 0;
-  // private readonly frameRateLimit: number = 1000 / 60; // 60 fps
-
-  // ngOnInit(): void {
-  //   const animate = (currentTime: number) => {
-  //     if (!this.lastFrameTime) {
-  //       this.lastFrameTime = currentTime;
-  //     }
-
-  //     const delta = currentTime - this.lastFrameTime;
-
-  //     if (delta > this.frameRateLimit) {
-  //       if (this.blobX !== this.mouseX || this.blobY !== this.mouseY) {
-  //         const speed = 0.022;
-  //         const targetX = this.mouseX || this.touchX;
-  //         const targetY = this.mouseY || this.touchY;
-
-  //         this.blobX += (targetX - this.blobX) * speed;
-  //         this.blobY += (targetY - this.blobY) * speed;
-  //       }
-  //       this.lastFrameTime = currentTime - (delta % this.frameRateLimit);
-  //     }
-
-  //     this.requestId = requestAnimationFrame(animate);
-  //   };
-
-  //   animate(0);
-  // }
-
-  // ngOnDestroy(): void {
-  //   if (this.requestId) {
-  //     cancelAnimationFrame(this.requestId);
-  //   }
-  // }
+  ngOnDestroy(): void {
+    if (this.requestId) {
+      cancelAnimationFrame(this.requestId);
+    }
+  }
 }

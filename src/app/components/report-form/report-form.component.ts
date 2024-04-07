@@ -180,16 +180,44 @@ export class ReportFormComponent implements AfterViewInit {
   }
 
   onLocationCreated(newLocation: ReportLocation) {
-    this.reportForm.patchValue({ location: newLocation });
-    this.createdLocations.push(newLocation);
-    this.loadLocationList(true);
+    let matchingLocation = undefined;
+    matchingLocation = this.locationList.find(location => {
+      const latDiff = Math.abs(location.latitude - newLocation.latitude);
+      const lngDiff = Math.abs(location.longitude - newLocation.longitude);
+      return latDiff <= 0.005 && lngDiff <= 0.005;
+    });
+    if (matchingLocation) {
+      alert('A location with the same coordinates already exists. Location selected.');
+      console.log('Matching location:', matchingLocation);
+      this.reportForm.patchValue({ location: newLocation });
+      // this.loadLocationList(matchingLocation.id);
+      this.loadLocationListWithSelectingDesiredLocation(matchingLocation.id);
+      return;
+    } else {
+      this.reportForm.patchValue({ location: newLocation });
+      this.createdLocations.push(newLocation);
+      this.loadLocationListWithSelectingMostRecentAddition();
+    }
   }
 
   ngAfterViewInit(): void {
-    this.loadLocationList();
+    this.loadLocationListWithoutSelection();
   }
 
-  loadLocationList(addRecentToStart: Boolean = false): void {
+  removeId0FromLocationList(): void {
+    this.locationList = this.locationList.filter(location => location.id !== '0');
+  }
+
+  loadLocationListWithSelectingDesiredLocation(idOfDesiredSelection: string): void {
+    const desiredLocation = this.locationList.find(location => location.id === idOfDesiredSelection);
+    if (desiredLocation) {
+      const longitude = desiredLocation.longitude;
+      const latitude = desiredLocation.latitude;
+      console.log('Desired Location:', longitude, latitude);
+    } else {
+      console.log('Desired Location not found');
+    }
+
     this.reportService.getAllReports().subscribe(
       (reports: Report[]) => {
         const reportLocations = reports.map(report => report.location);
@@ -199,47 +227,65 @@ export class ReportFormComponent implements AfterViewInit {
           id: uuidv4()
         }));
 
-        // Make alphabetical, and if addRecentToStart is true, move the last created location to the start of the list
-        const lastCreatedLocationId = this.locationList[this.locationList.length - 1].id;
-        this.locationList.sort((a, b) => a.name.localeCompare(b.name)); // Sort the locationList alphabetically by name
-        if (addRecentToStart) {
-          const lastCreatedLocationIndex = this.locationList.findIndex(location => location.id === lastCreatedLocationId);
-          if (lastCreatedLocationIndex !== -1) {
-            const lastCreatedLocation = this.locationList.splice(lastCreatedLocationIndex, 1)[0];
-            this.locationList.unshift(lastCreatedLocation);
-          }
-        } else {
-          // Prepend the list with a null location
-          this.locationList.unshift({ name: 'Select Location', longitude: 0, latitude: 0, id: '0' });
+        console.log('ID of desired selection:', idOfDesiredSelection);
+        console.log('LocationList:', this.locationList);
+
+        // Sort the locationList alphabetically by name
+        this.locationList.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Find the index of the desired selection
+        const indexOfDesiredSelection = this.locationList.findIndex(location => location.latitude === desiredLocation?.latitude && location.longitude === desiredLocation?.longitude);
+
+        // Move the desired selection to the start of the list
+        if (indexOfDesiredSelection !== -1) {
+          const desiredSelection = this.locationList.splice(indexOfDesiredSelection, 1)[0]; // Remove the desired selection from the list
+          this.locationList.unshift(desiredSelection); // Add the desired selection to the start of the list
         }
       }
+    );
+  }
 
 
-      // console.log("LocationList: ", this.locationList);
+  loadLocationListWithSelectingMostRecentAddition(): void {
+    this.reportService.getAllReports().subscribe(
+      (reports: Report[]) => {
+        const reportLocations = reports.map(report => report.location);
+        const uniqueLocations = Array.from(new Set(reportLocations.map(location => JSON.stringify(location)))).map(location => JSON.parse(location));
+        this.locationList = [...uniqueLocations, ...this.createdLocations].map(location => ({
+          ...location,
+          id: uuidv4()
+        }));
+
+        // Find the id of the last created location
+        let idOfDesiredSelection = this.locationList[this.locationList.length - 1].id;
+
+        // Sort the locationList alphabetically by name
+        this.locationList.sort((a, b) => a.name.localeCompare(b.name));
+
+        // Move the last created location to the start of the list
+        const indexOfDesiredSelection = this.locationList.findIndex(location => location.id == idOfDesiredSelection);
+        if (indexOfDesiredSelection !== -1) {
+          const removedIndex = this.locationList.splice(indexOfDesiredSelection, 1)[0]; // Removes the item at the index and returns it
+          this.locationList.unshift(removedIndex); // Add the item to the start of the list
+        }
+      }
+    );
+  }
 
 
-      // const { id, ...reportLocation } = this.locationList[this.locationList.length - 1];
-      // this.reportForm.controls['location'].setValue(reportLocation);
+  loadLocationListWithoutSelection(): void {
+    this.reportService.getAllReports().subscribe(
+      (reports: Report[]) => {
+        const reportLocations = reports.map(report => report.location);
+        const uniqueLocations = Array.from(new Set(reportLocations.map(location => JSON.stringify(location)))).map(location => JSON.parse(location));
+        this.locationList = [...uniqueLocations, ...this.createdLocations].map(location => ({
+          ...location,
+          id: uuidv4()
+        }));
 
-      // this.reportForm.controls['location'].setValue(this.locationList[this.locationList.length - 1], 7);
-
-
-      // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
-      // selectElement.selectedIndex = this.locationList.length - 1;
-      // console.log(selectElement.selectedIndex, this.locationList.length - 1); // always equal returns -1, then the correct number
-
-      // Set the selected option to the last id in the location list
-      // const selectElement = document.getElementById('locationName') as HTMLSelectElement;
-      // selectElement.selectedIndex = this.locationList.length - 1;
-      // console.log("EQUAL: ", this.locationList.length - 1, selectElement.selectedIndex);
-      // console.log("SelectElement: ", selectElement.options, selectElement.options.selectedIndex);
-
-      // console.log('Controls:', this.reportForm.controls['location']);
-      // if (newLocation) {
-      //   this.reportForm.controls['location'].setValue(null);
-      // }
-      // reports.forEach(report => console.log('Report:', report));
-      // }
+        this.locationList.sort((a, b) => a.name.localeCompare(b.name)); // Sort the locationList alphabetically by name
+        this.locationList.unshift({ name: 'Select Location', longitude: 0, latitude: 0, id: '0' }); // Prepend the list with a null location
+      }
     );
   }
 

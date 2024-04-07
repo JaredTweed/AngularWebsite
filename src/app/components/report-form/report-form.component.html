@@ -23,7 +23,7 @@
 
     <div class="text">Select Location:<br><span style="font-size: x-small; color: gray;">Hover for coordinates</span>
     </div>
-    <select id="locationName" placeholder="Location" formGroupName="location">
+    <select id="locationName" placeholder="Location" formGroupName="location" (change)="removeId0FromLocationList()">
       <option *ngFor="let location of locationList" [value]="location.id"
         [title]="location.longitude + ', ' + location.latitude">{{location.name}}</option>
     </select>

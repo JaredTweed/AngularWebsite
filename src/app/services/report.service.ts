@@ -32,12 +32,46 @@ export class ReportService {
           status: 'OPEN'
         },
         {
+          id: "f2483a68-6fe8-430d-0c98-3f54e72ace78",
+          reporterInfo: {
+            name: 'Jared Tweed',
+            phoneNumber: '(778) - 979 - 0126'
+          },
+          troublemakerName: 'Miss Demeanor',
+          location: {
+            name: 'Simon Fraser University',
+            longitude: -122.9168,
+            latitude: 49.2789
+          },
+          pictureUrl: '',
+          extraInfo: '',
+          timeDate: new Date(new Date(new Date().getTime() - 26 * 24 * 60 * 60 * 1000).setHours(10, 45, 0, 0)),
+          status: 'OPEN'
+        },
+        {
+          id: "baf0f192-aa4c-4fba-a51f-3354e7226278",
+          reporterInfo: {
+            name: 'Jared Tweed',
+            phoneNumber: '(778) - 979 - 0126'
+          },
+          troublemakerName: 'Sir Loin of Beef',
+          location: {
+            name: 'Lions Gate Bridge',
+            longitude: -123.1384,
+            latitude: 49.3151
+          },
+          pictureUrl: 'https://www.wholesomeyum.com/wp-content/uploads/2022/12/wholesomeyum-Sirloin-Tip-Roast-2.jpg',
+          extraInfo: '',
+          timeDate: new Date(new Date(new Date().getTime() - 24 * 24 * 60 * 60 * 1000).setHours(14, 27, 0, 0)),
+          status: 'OPEN'
+        },
+        {
           id: "caf0f192-af4c-4aba-a51f-6d5d5967ded3",
           reporterInfo: {
-            name: 'Phil Swift',
+            name: 'Darth Vader',
             phoneNumber: '(833) - 411 - 3539'
           },
-          troublemakerName: 'Darth Vader',
+          troublemakerName: 'Phil Swift',
           location: {
             name: 'Tsawwassen Ferry Terminal',
             longitude: -123.1275,
@@ -54,13 +88,13 @@ export class ReportService {
             name: 'Vince Offer',
             phoneNumber: '(877) - 376 - 6016'
           },
-          troublemakerName: 'Tiffany',
+          troublemakerName: 'Jack the Ripper',
           location: {
             name: 'Simon Fraser University',
             longitude: -122.9168,
             latitude: 49.2789
           },
-          pictureUrl: '',
+          pictureUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a1/JacktheRipper1888.jpg',
           extraInfo: 'ShamWow!!!!!',
           timeDate: new Date(new Date(new Date().getTime() - 13 * 24 * 60 * 60 * 1000).setHours(17, 43, 0, 0)),
           status: 'OPEN'
