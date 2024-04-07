@@ -1,6 +1,6 @@
 # Project Overview
 
-To see the app, go to https://jaredtweed.github.io/AngularProject-webpage/.
+To see the website, go to https://jaredtweed.github.io/AngularProject-webpage
 
 ## Technical Highlights
 
