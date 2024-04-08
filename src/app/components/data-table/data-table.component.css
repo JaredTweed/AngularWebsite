@@ -13,8 +13,6 @@
   because border-collapse does not work with overflow: hidden;*/
   border-spacing: 0;
 
-  /* position: absolute; */
-  /* top: 650px; */
   width: calc(100% - 60px);
   margin: 30px;
   min-width: 234px;
