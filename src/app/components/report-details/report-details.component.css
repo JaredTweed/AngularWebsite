@@ -15,8 +15,9 @@
 
 
 .details-container {
-  background-color: #ffffff;
+  background-color: var(--no-clear-background-color);
   border: 1px solid #000000;
+  color: var(--text-color);
 
   position: fixed;
   top: 40%;
