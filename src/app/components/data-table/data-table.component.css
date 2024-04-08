@@ -1,3 +1,9 @@
+#table-container {
+  top: 650px;
+  width: 100%;
+  position: absolute;
+}
+
 .table {
   /* overflow:hidden; is necessary for making rounded corners work */
   border: 1px solid var(--border-color);
@@ -7,8 +13,8 @@
   because border-collapse does not work with overflow: hidden;*/
   border-spacing: 0;
 
-  position: absolute;
-  top: 650px;
+  /* position: absolute; */
+  /* top: 650px; */
   width: calc(100% - 60px);
   margin: 30px;
   min-width: 234px;
@@ -19,8 +25,11 @@
 }
 
 @media (max-width: 650px) {
-  .table {
+  #table-container {
     top: 1290px;
+  }
+
+  .table {
     display: block;
     overflow-x: auto;
     white-space: nowrap;

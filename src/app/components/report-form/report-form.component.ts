@@ -47,7 +47,7 @@ export class ReportFormComponent implements AfterViewInit {
       timeDate: [''],
     });
 
-    const currentTheme = localStorage.getItem('theme') || 'light';
+    const currentTheme = localStorage.getItem('theme') || 'dark';
     document.body.setAttribute('data-theme', currentTheme);
   }
 
