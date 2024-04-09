@@ -182,6 +182,7 @@ export class ReportFormComponent implements AfterViewInit {
   }
 
   onLocationCreated(newLocation: ReportLocation) {
+    this.isLocationPlaceholder = false;
     let matchingLocation = undefined;
     matchingLocation = this.locationList.find(location => {
       const latDiff = Math.abs(location.latitude - newLocation.latitude);
