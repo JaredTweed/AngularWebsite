@@ -90,15 +90,15 @@ export class AppComponent {
       // Check if FPS is dropping or is good
       if (delta !== 0) {
         const fps = 1000 / delta;
-        if (fps <= 20) {
+        if (fps <= 26) {
           this.timeFpsDropped += delta / 1000;
           this.numFramesDropped++;
-          // console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is', fps, 'frames per second. Number of frames dropped:', this.numFramesDropped);
+          console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is', fps, 'frames per second. Number of frames dropped:', this.numFramesDropped);
         }
-        if (fps > 20) {
+        if (fps > 26) {
           this.timeFpsGood += delta / 1000;
           if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; this.numFramesDropped = 0; }
-          // console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is', fps, 'frames per second');
+          console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is', fps, 'frames per second');
         }
       }
 
@@ -126,7 +126,8 @@ export class AppComponent {
       // Continue updating/animating the blob position if the FPS is good
       if (this.timeFpsDropped < 3 || this.numFramesDropped < 8) {
         this.requestId = requestAnimationFrame(animate);
-      } else { this.keepBlobSpinning = false; }
+      }
+      // else { this.keepBlobSpinning = false; } // I tested it, but the blob spinning does not decrease the FPS
     };
 
     animate(0);
