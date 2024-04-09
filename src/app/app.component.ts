@@ -88,11 +88,11 @@ export class AppComponent {
 
       // Check if FPS is dropping or is good
       if (delta !== 0) {
-        if (1000 / delta <= 30) {
+        if (1000 / delta <= 20) {
           this.timeFpsDropped += delta / 1000;
           console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is ', 1000 / delta, 'frames per second');
         }
-        if (1000 / delta > 30) {
+        if (1000 / delta > 20) {
           this.timeFpsGood += delta / 1000;
           if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; }
           console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is ', 1000 / delta, 'frames per second');
