@@ -17,6 +17,7 @@ export class AppComponent {
   touchY = 0;
   touchActive = false;
 
+  numFramesDropped = 0;
   timeFpsDropped = 0;
   timeFpsGood = 0;
   stopBlobSpinning = false;
@@ -88,14 +89,16 @@ export class AppComponent {
 
       // Check if FPS is dropping or is good
       if (delta !== 0) {
-        if (1000 / delta <= 20) {
+        const fps = 1000 / delta;
+        if (fps <= 20) {
           this.timeFpsDropped += delta / 1000;
-          console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is ', 1000 / delta, 'frames per second');
+          this.numFramesDropped++;
+          // console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is', fps, 'frames per second. Number of frames dropped:', this.numFramesDropped);
         }
-        if (1000 / delta > 20) {
+        if (fps > 20) {
           this.timeFpsGood += delta / 1000;
-          if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; }
-          console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is ', 1000 / delta, 'frames per second');
+          if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; this.numFramesDropped = 0; }
+          // console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is', fps, 'frames per second');
         }
       }
 
@@ -121,7 +124,7 @@ export class AppComponent {
       }
 
       // Continue updating/animating the blob position if the FPS is good
-      if (this.timeFpsDropped < 3) {
+      if (this.timeFpsDropped < 3 || this.numFramesDropped < 8) {
         this.stopBlobSpinning = true;
         this.requestId = requestAnimationFrame(animate);
       }
