@@ -1,6 +1,6 @@
 # Project Overview
 
-To see the website, go to https://jaredtweed.github.io/AngularProject-webpage
+To see the website, go to https://jaredtweed.github.io/TroublemakerReporter
 
 ## Technical Highlights
 
@@ -24,4 +24,4 @@ This project is a web application that uses [Angular](https://github.com/angular
 
   
 
-The compressed build is here: https://github.com/JaredTweed/AngularProject-webpage/
+The compressed build is here: https://github.com/JaredTweed/TroublemakerReporter
