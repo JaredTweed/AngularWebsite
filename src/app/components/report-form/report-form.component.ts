@@ -25,6 +25,7 @@ export class ReportFormComponent implements AfterViewInit {
   showPopup: boolean = false;
   locationList: LocationWithId[];
   createdLocations: ReportLocation[];
+  isLocationPlaceholder: boolean = true;
   @Output() reportSubmitted = new EventEmitter();
   @Output() themeChange = new EventEmitter();
 
@@ -200,12 +201,14 @@ export class ReportFormComponent implements AfterViewInit {
     }
   }
 
+
   ngAfterViewInit(): void {
     this.loadLocationListWithoutSelection();
   }
 
   removeId0FromLocationList(): void {
     this.locationList = this.locationList.filter(location => location.id !== '0');
+    this.isLocationPlaceholder = false;
   }
 
   loadLocationListWithSelectingDesiredLocation(idOfDesiredSelection: string): void {

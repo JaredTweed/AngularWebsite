@@ -1,9 +1,7 @@
-<!-- <p>report-form works!</p> -->
 <div class="report-form-container">
   <div id="title-theme-container">
     <h3>Report Form</h3>
     <button class="otherButton" id="theme-button" (click)="toggleTheme()">Toggle Theme</button>
-
   </div>
 
   <!-- <div class="text">Password: BaggyJeans</div> -->
@@ -15,15 +13,12 @@
       <div class="requiredText">*Must be exactly 10 numbers</div>
     </div>
     <input formControlName="troublemakerName" type="text" placeholder="Troublemaker's Name" />
-    <!-- <div formGroupName="location">
-            <input formControlName="name" type="text" placeholder="Location Name" list="locations" />
-            <input formControlName="longitude" type="text" placeholder="Longitude" />
-            <input formControlName="latitude" type="text" placeholder="Latitude" />
-        </div> -->
 
-    <div class="text">Select Location:<br><span style="font-size: x-small; color: gray;">Hover for coordinates</span>
-    </div>
-    <select id="locationName" placeholder="Location" formGroupName="location" (change)="removeId0FromLocationList()">
+    <div class="text" style="margin-bottom:0px;">Select Location:</div>
+    <div class="text" style="margin-top:0px; font-size: x-small; color: var(--placeholder-color);">Hover for
+      coordinates</div>
+    <select [ngClass]="{'isPlaceholder': this.isLocationPlaceholder == true}" id="locationName" placeholder="Location"
+      formGroupName="location" (change)="removeId0FromLocationList()">
       <option *ngFor="let location of locationList" [value]="location.id"
         [title]="location.longitude + ', ' + location.latitude">{{location.name}}</option>
     </select>
@@ -33,8 +28,6 @@
     <textarea formControlName="extraInfo" placeholder="Extra Information (optional)"></textarea>
     <button id='submitButton' type="submit">Submit Report</button>
   </form>
-
-
 </div>
 <app-location-form *ngIf="showPopup" (locationCreated)="onLocationCreated($event)"
   (close)="showPopup = false"></app-location-form>

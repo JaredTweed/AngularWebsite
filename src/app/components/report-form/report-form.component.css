@@ -58,8 +58,11 @@ button,
 .text {
   border-radius: 4px;
   margin: 5px;
-
   color: var(--text-color);
+}
+
+::placeholder {
+  color: var(--placeholder-color);
 }
 
 form {
@@ -89,8 +92,16 @@ textarea {
   font-size: 13px;
 }
 
-select,
+select {
+  background-color: var(--background-color);
+}
+
+.isPlaceholder {
+  color: var(--placeholder-color);
+}
+
 option {
+  color: var(--text-color);
   background-color: var(--no-clear-background-color);
 }
 

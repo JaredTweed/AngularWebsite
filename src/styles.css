@@ -7,6 +7,8 @@
   --even-table-row-color: #2b2b2b;
   --text-color: #ffffff;
   --red-text-color: #ff3838;
+  --placeholder-color: gray;
+  --gradient-color: linear-gradient(to right, aquamarine, mediumpurple);
 
   --no-clear-background-color: #3b3b3b;
   --no-clear-internal-border-color: gray;
@@ -18,7 +20,9 @@
   --internal-border-color: black;
   --even-table-row-color: rgba(0, 0, 0, 0);
   --text-color: #ffffff;
-  --red-text-color: #ff0000;
+  --red-text-color: white;
+  --placeholder-color: #ffffff;
+  --gradient-color: linear-gradient(to right, rgb(0, 194, 129), mediumpurple);
 
   --no-clear-background-color: #3b3b3b;
   --no-clear-internal-border-color: gray;
@@ -31,6 +35,8 @@
   --even-table-row-color: #f2f2f2;
   --text-color: black;
   --red-text-color: rgb(143, 0, 0);
+  --placeholder-color: gray;
+  --gradient-color: linear-gradient(to right, rgb(0, 194, 129), rgb(0, 194, 129), rgb(39, 39, 39), mediumpurple, mediumpurple);
 
   --no-clear-background-color: #f9f9f9;
   --no-clear-internal-border-color: #ccc;

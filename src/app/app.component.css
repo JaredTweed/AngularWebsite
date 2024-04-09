@@ -11,7 +11,7 @@
   top: 50%;
   translate: -50% -50%;
   border-radius: 50%;
-  background: linear-gradient(to right, aquamarine, mediumpurple);
+  background: var(--gradient-color);
 
   animation: rotate 6s linear infinite;
   filter: blur(80px);
