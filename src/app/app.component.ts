@@ -124,7 +124,7 @@ export class AppComponent {
       }
 
       // Continue updating/animating the blob position if the FPS is good
-      if (this.timeFpsDropped < 3 || this.numFramesDropped < 8) {
+      if (this.timeFpsDropped < 2 || this.numFramesDropped < 7) {
         this.requestId = requestAnimationFrame(animate);
       }
       // else { this.keepBlobSpinning = false; } // I tested it, but the blob spinning does not decrease the FPS
