@@ -17,6 +17,8 @@ export class AppComponent {
   touchY = 0;
   touchActive = false;
 
+  timeFpsDropped = 0;
+
   getBrowserName(): string {
     console.log('User Agent:', window.navigator.userAgent);
     const userAgent = window.navigator.userAgent;
@@ -75,12 +77,18 @@ export class AppComponent {
       localStorage.setItem('theme', 'dark');
     }
 
+
     const animate = (currentTime: number) => {
       if (!this.lastFrameTime) {
         this.lastFrameTime = currentTime;
       }
 
       const delta = currentTime - this.lastFrameTime;
+
+      if (delta < 13 && delta !== 0) {
+        this.timeFpsDropped += 1 / delta;
+        console.log('FPS dropped for', this.timeFpsDropped, 'seconds');
+      }
 
       if (delta > this.frameRateLimit) {
         const targetX = this.touchActive ? this.touchX : this.mouseX;
@@ -102,10 +110,15 @@ export class AppComponent {
         this.lastFrameTime = currentTime - (delta % this.frameRateLimit);
       }
 
-      this.requestId = requestAnimationFrame(animate);
+      if (this.timeFpsDropped < 3) {
+        this.requestId = requestAnimationFrame(animate);
+      }
     };
 
     animate(0);
+
+
+
   }
 
   ngOnDestroy(): void {
