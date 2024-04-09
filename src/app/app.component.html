@@ -1,5 +1,6 @@
 <div style="overflow:hidden; position: absolute; z-index: -1; height: 100%; width: 100%; top: 0; left: 0;">
-  <div id="blob" [ngStyle]="{'left.px': blobX, 'top.px': blobY, 'position': 'absolute'}"></div>
+  <div id="blob" [ngClass]="{'.is-rotating':stopBlobSpinning == false}"
+    [ngStyle]="{'left.px': blobX, 'top.px': blobY, 'position': 'absolute'}"></div>
 
   <div style="overflow-y:scroll; position: absolute; z-index: -1; height: 100%; width: 100%; top: 0; left: 0;">
     <app-map-view></app-map-view>

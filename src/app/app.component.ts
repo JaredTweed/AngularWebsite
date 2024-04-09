@@ -18,6 +18,8 @@ export class AppComponent {
   touchActive = false;
 
   timeFpsDropped = 0;
+  timeFpsGood = 0;
+  stopBlobSpinning = false;
 
   getBrowserName(): string {
     console.log('User Agent:', window.navigator.userAgent);
@@ -82,14 +84,22 @@ export class AppComponent {
       if (!this.lastFrameTime) {
         this.lastFrameTime = currentTime;
       }
-
       const delta = currentTime - this.lastFrameTime;
 
-      if (delta < 13 && delta !== 0) {
-        this.timeFpsDropped += 1 / delta;
-        console.log('FPS dropped for', this.timeFpsDropped, 'seconds');
+      // Check if FPS is dropping or is good
+      if (delta !== 0) {
+        if (1000 / delta <= 30) {
+          this.timeFpsDropped += delta / 1000;
+          console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is ', 1000 / delta, 'frames per second');
+        }
+        if (1000 / delta > 30) {
+          this.timeFpsGood += delta / 1000;
+          if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; }
+          console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is ', 1000 / delta, 'frames per second');
+        }
       }
 
+      // Update blob position irrespective of the FPS
       if (delta > this.frameRateLimit) {
         const targetX = this.touchActive ? this.touchX : this.mouseX;
         const targetY = this.touchActive ? this.touchY : this.mouseY;
@@ -110,7 +120,9 @@ export class AppComponent {
         this.lastFrameTime = currentTime - (delta % this.frameRateLimit);
       }
 
+      // Continue updating/animating the blob position if the FPS is good
       if (this.timeFpsDropped < 3) {
+        this.stopBlobSpinning = true;
         this.requestId = requestAnimationFrame(animate);
       }
     };

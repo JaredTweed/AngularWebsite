@@ -6,6 +6,7 @@ import { HashService } from '../../services/hash.service';
 import { ReportLocation, Report } from '../../models/report.model';
 import { v4 as uuidv4 } from 'uuid';
 import { ValidatorFn } from '@angular/forms';
+import { TitleCasePipe } from '@angular/common';
 
 interface LocationWithId {
   name: string;
@@ -185,16 +186,16 @@ export class ReportFormComponent implements AfterViewInit {
     matchingLocation = this.locationList.find(location => {
       const latDiff = Math.abs(location.latitude - newLocation.latitude);
       const lngDiff = Math.abs(location.longitude - newLocation.longitude);
-      return latDiff <= 0.005 && lngDiff <= 0.005;
+      return (latDiff <= 0.005 && lngDiff <= 0.005 && location.name.toLowerCase() === newLocation.name.toLowerCase()) || (latDiff == 0 && lngDiff == 0);
     });
     if (matchingLocation) {
-      alert('A location with the same coordinates already exists. Location selected.');
+      alert(`Selected the location '${matchingLocation.name}' with the same coordinates.`);
       console.log('Matching location:', matchingLocation);
       this.reportForm.patchValue({ location: newLocation });
-      // this.loadLocationList(matchingLocation.id);
       this.loadLocationListWithSelectingDesiredLocation(matchingLocation.id);
       return;
     } else {
+      newLocation.name = new TitleCasePipe().transform(newLocation.name);
       this.reportForm.patchValue({ location: newLocation });
       this.createdLocations.push(newLocation);
       this.loadLocationListWithSelectingMostRecentAddition();

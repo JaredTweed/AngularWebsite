@@ -12,9 +12,11 @@
   translate: -50% -50%;
   border-radius: 50%;
   background: var(--gradient-color);
-
-  animation: rotate 6s linear infinite;
   filter: blur(80px);
+}
+
+.is-rotating {
+  animation: rotate 6s linear infinite;
 }
 
 @keyframes rotate {
