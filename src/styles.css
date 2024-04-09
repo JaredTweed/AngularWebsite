@@ -12,6 +12,7 @@
 
   --no-clear-background-color: #3b3b3b;
   --no-clear-internal-border-color: gray;
+  --no-clear-red-text-color: #ff3838;
 }
 
 [data-theme='clear'] {
@@ -21,11 +22,12 @@
   --even-table-row-color: rgba(0, 0, 0, 0);
   --text-color: #ffffff;
   --red-text-color: white;
-  --placeholder-color: #ffffff;
+  --placeholder-color: white;
   --gradient-color: linear-gradient(to right, rgb(0, 194, 129), mediumpurple);
 
   --no-clear-background-color: #3b3b3b;
   --no-clear-internal-border-color: gray;
+  --no-clear-red-text-color: #ff3838;
 }
 
 [data-theme='light'] {
@@ -40,4 +42,5 @@
 
   --no-clear-background-color: #f9f9f9;
   --no-clear-internal-border-color: #ccc;
+  --no-clear-red-text-color: rgb(143, 0, 0);
 }
