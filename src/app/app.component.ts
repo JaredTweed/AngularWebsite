@@ -93,12 +93,12 @@ export class AppComponent {
         if (fps <= 26) {
           this.timeFpsDropped += delta / 1000;
           this.numFramesDropped++;
-          console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is', fps, 'frames per second. Number of frames dropped:', this.numFramesDropped);
+          // console.log('FPS dropped for', this.timeFpsDropped, 'seconds. FPS is', fps, 'frames per second. Number of frames dropped:', this.numFramesDropped);
         }
         if (fps > 26) {
           this.timeFpsGood += delta / 1000;
           if (this.timeFpsGood > 3) { this.timeFpsDropped = 0; this.numFramesDropped = 0; }
-          console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is', fps, 'frames per second');
+          // console.log('FPS has been good for', this.timeFpsGood, 'seconds. FPS is', fps, 'frames per second');
         }
       }
 
