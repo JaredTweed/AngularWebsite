@@ -20,7 +20,7 @@ export class AppComponent {
   numFramesDropped = 0;
   timeFpsDropped = 0;
   timeFpsGood = 0;
-  stopBlobSpinning = false;
+  keepBlobSpinning = true;
 
   getBrowserName(): string {
     console.log('User Agent:', window.navigator.userAgent);
@@ -113,7 +113,7 @@ export class AppComponent {
         // Update speed based on distance to target, mimicking acceleration
         const currentSpeed = Math.min(this.speed + this.acceleration * distance, this.maxSpeed);
 
-        if (distance > 1) { // Check if blob is not already at the target to avoid jittering
+        if (distance > 70) { // Check if blob is not already at the target to avoid jittering
           setTimeout(() => {
             this.blobX += dx * currentSpeed;
             this.blobY += dy * currentSpeed;
@@ -125,9 +125,8 @@ export class AppComponent {
 
       // Continue updating/animating the blob position if the FPS is good
       if (this.timeFpsDropped < 3 || this.numFramesDropped < 8) {
-        this.stopBlobSpinning = true;
         this.requestId = requestAnimationFrame(animate);
-      }
+      } else { this.keepBlobSpinning = false; }
     };
 
     animate(0);
